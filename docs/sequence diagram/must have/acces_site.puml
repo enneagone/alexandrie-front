@@ -1,0 +1,13 @@
+@startuml
+
+Actor Utilisateur As U
+Participant Application As A
+
+U -> A: l'utilisateur accède au site web
+A ->>U: le site demande à l'utilisateur de se connecter
+Alt Authentification
+U -> A: L'utilisateur se connecte a son compte
+Else Si Pas de compte
+U -> A: L'utilisateur demande de créer un compte
+end
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+Actor Utilisateur As U
+Participant Application As A
+
+U->A: sélectionne l'onglet "User"
+A->>U: redirige vers la page
+U->A: entre le nouveau mdp
+Alt mdp correcte
+U->A: entre le nouveau mdp
+A->>A: enregistre le nouveau mdp
+Else mdp incorrecte
+A->>U: indique que le mdp est incorrect
+end
+
+
+
+@enduml
