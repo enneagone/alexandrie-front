@@ -1,0 +1,10 @@
+@startuml
+Actor Utilisateur As U
+Participant Application As A
+
+U->A: va dans l'onglet "Médias"
+A->>U: redirige vers la page
+U->A: clique sur l'icone supprimer du média
+A->>A: supprime le média
+
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+Actor Utilisateur As U
+Participant Application As A
+
+U->A: L'utilisateur indique son adresse mail
+Alt mail existant
+A ->>U: L'application renvoie un lien de réinitialisation mdp
+Else Si mail non existant
+A ->>U: L'application indiquie mail incorrecte
+Else Si mail non existant
+A ->>U: L'application demande la création d'un compte
+end
+
+@enduml

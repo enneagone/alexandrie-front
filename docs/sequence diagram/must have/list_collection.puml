@@ -1,0 +1,9 @@
+@startuml
+Actor Utilisateur As U
+Participant Application As A
+
+U->A: l'utilisateur sélectionne l'onglet "ma collection"
+Alt affichage collection
+A->>U: renvoie à l'utilisateur sa liste de collection
+Else Si aucune collection
+@enduml

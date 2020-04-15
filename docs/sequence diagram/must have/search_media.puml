@@ -1,0 +1,17 @@
+@startuml
+Actor Utilisateur As U
+Participant Application As A
+
+U->A: L'utilisateur va dans l'onglet "Médias"
+Alt L'utilisateur possède des médias
+U->A: L'utilisateur entre dans une barre de recherche le media
+Alt le média existe
+A->>U: Renvoie le média
+Else Si média n'existe pas
+A->>U: indique que le média est inexistant
+end
+Else Si ne possède pas de médias
+A->>U: indique que l'utilisateur n'a pas de média.
+end
+
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+Actor Utilisateur As U
+Participant Application As A
+
+U->A: L'utilisateur clique sur le bouton de creation de collection
+Alt La collection est inexistante
+U->A: L'utilisateur indique le nom de la collection
+A ->>A: enregistre la nouvelle collection
+Else Si la collection est déjà présente
+A->>U: indique à l'utilisateur que cette collection est déjà présente
+end
+
+@enduml
