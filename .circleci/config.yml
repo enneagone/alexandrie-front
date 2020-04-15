@@ -152,10 +152,16 @@ workflows:
               ignore: /^v.*/
             branches:
               only: master
-      - release:
+      - go-to-prod:
           type: approval
           requires:
             - deploy-dev
+          filters:
+            branches:
+              only: master
+      - release:
+          requires:
+            - go-to-prod
           filters:
             branches:
               only: master
