@@ -1,0 +1,157 @@
+version: 2.1
+commands:
+  deploy_netlify:
+    description: 'Deploy frontend to netlify'
+    parameters:
+      siteId:
+        type: string
+    steps:
+      - attach_workspace:
+          at: /tmp
+      - run:
+          name: Deploy to netlify
+          command: npx netlify-cli deploy -d /tmp/front-build -a $NETLIFY_TOKEN -s << parameters.siteId >> -p
+  build_front:
+    description: 'Build front for env'
+    parameters:
+      targetEnv:
+        type: string
+    steps:
+      - setup_deps
+      - run:
+          name: Build frontend
+          command: yarn build:<< parameters.targetEnv >>
+      - run:
+          name: Copy front end artifacts to workspace
+          command: cp dist/alexandrie-front /tmp/front-build -r
+      - store_artifacts:
+          path: /tmp/front-build
+      - persist_to_workspace:
+          root: /tmp
+          paths:
+            - front-build
+
+  setup_deps:
+    description: 'Setup cache and do a yarn install'
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-npm-{{checksum ".circleci/config.yml"}}-{{checksum "yarn.lock"}}
+            - v1-npm-{{checksum ".circleci/config.yml"}}
+      - run:
+          name: Install dependencies
+          command: yarn
+jobs:
+  test: &test
+    docker:
+      - image: circleci/node:10-browsers
+    working_directory: ~/alexandrie-front
+    steps:
+      - setup_deps
+      - run:
+          name: Executing tests
+          command: yarn test --no-watch --no-progress --browsers=ChromeHeadlessCI
+  prettier:
+    <<: *test
+    steps:
+      - setup_deps
+      - run:
+          name: Check prettier
+          command: yarn format:check
+  lint:
+    <<: *test
+    steps:
+      - setup_deps
+      - run:
+          name: Check lint
+          command: yarn lint
+  cache:
+    <<: *test
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: yarn
+      - save_cache:
+          key: v1-npm-{{checksum ".circleci/config.yml"}}-{{checksum "yarn.lock"}}
+          paths:
+            - ~/alexandrie-front/node_modules
+            - /usr/local/share/.cache/yarn
+            - /usr/local/share/.config/yarn
+  buildDev:
+    <<: *test
+    steps:
+      - build_front:
+          targetEnv: dev
+  buildProd:
+    <<: *test
+    steps:
+      - build_front:
+          targetEnv: prod
+  deployDev:
+    <<: *test
+    steps:
+      - deploy_netlify:
+          siteId: '366210b7-d2a8-49a0-a14a-d206a44fb631'
+  deployProd:
+    <<: *test
+    steps:
+      - deploy_netlify:
+          siteId: '22701f72-821d-44b6-83e4-63fdc802f174'
+  release:
+    <<: *test
+    steps:
+      - setup_deps
+      - run:
+          name: release
+          command: yarn release || true
+
+workflows:
+  version: 2
+  alexandrie-front:
+    jobs:
+      - cache:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              only: master
+      - test
+      - lint
+      - prettier
+      - buildDev:
+          filters:
+            tags:
+              ignore: /^v.*/
+      - buildProd:
+          filters:
+            tags:
+              only: /^v.*/
+      - deployProd:
+          requires:
+            - test
+            - lint
+            - prettier
+            - buildProd
+          filters:
+            tags:
+              only: /^v.*/
+      - deploy-dev:
+          requires:
+            - test
+            - lint
+            - prettier
+            - buildDev
+          filters:
+            tags:
+              ignore: /^v.*/
+            branches:
+              only: master
+      - release:
+          type: approval
+          requires:
+            - deploy-dev
+          filters:
+            branches:
+              only: master
