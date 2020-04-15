@@ -1,0 +1,15 @@
+@startuml
+Actor Utilisateur As U
+Participant Application As A
+
+U -> A: L'utilisateur saisie son identifiant
+Alt identifiant correcte
+A ->>U: Redirection vers la page d'accueil
+Else Si identifiant incorrecte
+A ->>U: nouvelle demande de saisie de l'identifiant
+Else Si mdp oublie
+U ->A: demande d'un nouveau mdp
+end
+
+
+@enduml

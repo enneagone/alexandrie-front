@@ -1,0 +1,14 @@
+@startuml
+Actor Utilisateur As U
+Participant Application As A
+
+Alt Colllection existante
+U->A: L'utilisateur clique sur un bouton pour ajouter un média
+A->>U: L'application demande a l'utilisateur ou se trouve le média
+U->A: L'utilisateur indique le média
+A->>A: L'application ajoute le média à la collection
+Else si Aucune collection
+A->>U : demande de création de collection
+end
+
+@enduml
