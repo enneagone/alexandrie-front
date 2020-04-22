@@ -1,0 +1,8 @@
+@startuml
+Actor Utilisateur As U
+Participant Application As A
+
+U->A: sélectionne l'onglet "User"
+A->>U: redirige vers la page
+A->>U: affiche les information de l'utilisateur
+@enduml
