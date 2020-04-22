@@ -1,0 +1,18 @@
+@startuml
+Actor Utilisateur As U
+Participant Application As A
+
+U->A: l'utilisateur cherche un pseudo
+Alt Utilisateur non existant
+A->>U: indique qu'il y a aucun utilisateur
+Else Si utilisateur trouvé
+A->>U: affiche l'utilisateur
+U->A: consulte la collection de l'utilisateur
+Alt Pas de collection
+A->>U: indique que l'utilisateur n'a pas de collection
+Else si collection
+A->>U: renvoie la collection de l'utilisateur
+end
+end
+
+@enduml
