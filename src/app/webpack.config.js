@@ -20,12 +20,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ template: './src/app.component.html' }),
-    new webpack.DefinePlugin({
+    /**new webpack.DefinePlugin({
       // global app config object
       config: JSON.stringify({
         apiUrl: 'http://localhost:4000',
       }),
-    }),
+    }),**/
   ],
   devServer: {
     historyApiFallback: true,
