@@ -48,13 +48,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.loading = true;
-    console.log(
-      this.f.email.value +
-        ' ' +
-        this.f.username.value +
-        ' ' +
-        this.f.password.value,
-    );
+
     this.authenticationService.register(
       this.f.email.value,
       this.f.username.value,
