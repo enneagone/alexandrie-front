@@ -1,6 +1,31 @@
-<div class="navbar-nav">
-  <a class="nav-item nav-link" routerLink="/login">Login</a>
-  <a class="nav-item nav-link" routerLink="/register">register</a>
-  <a class="nav-item nav-link" routerLink="/">Home</a>
+<div class="box">
+  <div id="Logo">
+    <img id="image" src="assets/Logo.png" />
+  </div>
+
+  <div class="Authentification" align="center">
+    <button
+      id="Login"
+      aria-label="Login"
+      (click)="isOnLogin = true; isOnRegister = false"
+    >
+      Login
+    </button>
+    <button
+      id="Register"
+      aria-label="Sign In"
+      (click)="isOnRegister = true; isOnLogin = false"
+    >
+      Sign In
+    </button>
+  </div>
 </div>
-<router-outlet></router-outlet>
+
+<div class="componentAuth" align="center">
+  <div class="LoginCom">
+    <alx-login *ngIf="isOnLogin"></alx-login>
+  </div>
+  <div class="RefisterComp">
+    <alx-register *ngIf="isOnRegister"></alx-register>
+  </div>
+</div>

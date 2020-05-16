@@ -40,17 +40,11 @@ export class AuthenticationService {
         {},
         { params: parameters, responseType: 'text' },
       )
-      .subscribe(
-        (user) => {
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.currentUserSubject.next(user);
-          return user;
-        },
-        (error) => {
-          /* ca marche mais ca passe quand meme dans echec :-/ */
-          console.log('echec du login : ', error);
-        },
-      );
+      .subscribe((user) => {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
+        return user;
+      });
   }
   logout() {
     // remove user from local storage and set current user to null

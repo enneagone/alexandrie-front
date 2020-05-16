@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'alx-login',
@@ -29,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      Email: ['', Validators.required],
       password: ['', Validators.required],
     });
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
@@ -47,10 +46,6 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loading = true;
-    // console.log(this.f.username.value + ' ' + this.f.password.value);
-    this.authenticationService.login(
-      this.f.username.value,
-      this.f.password.value,
-    );
+    this.authenticationService.login(this.f.Email.value, this.f.password.value);
   }
 }
