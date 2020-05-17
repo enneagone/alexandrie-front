@@ -13,8 +13,8 @@
               class="form-control"
               [ngClass]="{ 'is-valid': submitted && f.email.errors }"
             />
-            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-              <div *ngIf="f.name.errors.required">Name is required</div>
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Name is required</div>
             </div>
           </div>
         </td>
@@ -48,8 +48,8 @@
               class="form-control"
               [ngClass]="{ 'is-valid': submitted && f.email.errors }"
             />
-            <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
-              <div *ngIf="f.country.errors.required">country is required</div>
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">country is required</div>
             </div>
           </div>
         </td>
@@ -63,8 +63,8 @@
               class="form-control"
               [ngClass]="{ 'is-valid': submitted && f.email.errors }"
             />
-            <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
-              <div *ngIf="f.city.errors.required">city is required</div>
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">city is required</div>
             </div>
           </div>
         </td>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { JwtService } from '../../core/services';
+import { UserService } from '../../core/services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // @ts-ignore
 import { SelectItem } from 'primeng/primeng';
@@ -38,14 +38,13 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-
-    private authenticationService: JwtService,
+    private authenticationService: UserService,
   ) {
     for (let i = 0; i < 40; ++i) {
       // @ts-ignore
       this.years.push(this.currentDate.getFullYear() - i);
     }
-    if (this.authenticationService.getToken()) {
+    if (this.authenticationService.isAuthenticated) {
       this.router.navigate(['/']);
     }
   }
@@ -74,12 +73,10 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.loading = true;
-
-    /**
     this.authenticationService.register(
       this.f.email.value,
       this.f.username.value,
       this.f.password.value,
-    ); **/
+    );
   }
 }

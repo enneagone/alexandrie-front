@@ -5,6 +5,7 @@ import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
 import { User } from '../models';
 
+// @ts-ignore
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private currentUserSubject: BehaviorSubject<User>;
@@ -24,7 +25,6 @@ export class UserService {
     // tslint:disable-next-line:no-shadowed-variable
     private jwtService: JwtService,
   ) {}
-
   userKnown() {
     if (this.jwtService.getToken()) {
       this.apiService.get('/user').subscribe(
@@ -57,11 +57,33 @@ export class UserService {
     });
     return (
       this.apiService
-        .post('/public/login', {}, parameters)
+        .post('/public/users/login', { params: parameters })
         // tslint:disable-next-line:ban-types
-        .subscribe((data: Object) => {
-          console.log(data);
-        })
+        .subscribe(
+          (data) => {
+            console.log(data);
+          },
+          (error) => console.log(error),
+        )
     );
+  }
+
+  register(email: string, username: string, password: string) {
+    console.log('Information : ' + email + ' ' + username + ' ' + password);
+    const parameters = new HttpParams({
+      fromString:
+        'username=' + username + '&email=' + email + '&password=' + password,
+    });
+
+    console.log(' Parameters : ' + parameters);
+
+    return this.apiService
+      .post('/public/users/register', { params: parameters })
+      .subscribe(
+        (data) => console.log(data),
+        (error) => {
+          console.log(error);
+        },
+      );
   }
 }
