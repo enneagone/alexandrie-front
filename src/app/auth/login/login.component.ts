@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthenticationService } from '../services';
+import { UserService } from '../../core/services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -19,9 +19,9 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService,
+    private authenticationService: UserService,
   ) {
-    if (this.authenticationService.currentUserValue) {
+    if (this.authenticationService.isAuthenticated) {
       this.router.navigate(['/']);
     }
   }

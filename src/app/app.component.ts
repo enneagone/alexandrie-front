@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { JwtService } from './core';
 
 @Component({
   selector: 'alx-root',
@@ -9,4 +11,5 @@ export class AppComponent {
   title = 'alexandrie-front';
   isOnLogin = true;
   isOnRegister = false;
+  constructor(private jwtService: JwtService) {}
 }

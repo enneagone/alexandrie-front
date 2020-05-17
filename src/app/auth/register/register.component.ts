@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthenticationService } from '../services';
+import { JwtService } from '../../core/services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // @ts-ignore
 import { SelectItem } from 'primeng/primeng';
-import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'alx-register',
@@ -40,13 +39,13 @@ export class RegisterComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
 
-    private authenticationService: AuthenticationService,
+    private authenticationService: JwtService,
   ) {
     for (let i = 0; i < 40; ++i) {
       // @ts-ignore
       this.years.push(this.currentDate.getFullYear() - i);
     }
-    if (this.authenticationService.currentUserValue) {
+    if (this.authenticationService.getToken()) {
       this.router.navigate(['/']);
     }
   }
@@ -76,10 +75,11 @@ export class RegisterComponent implements OnInit {
     }
     this.loading = true;
 
+    /**
     this.authenticationService.register(
       this.f.email.value,
       this.f.username.value,
       this.f.password.value,
-    );
+    ); **/
   }
 }
