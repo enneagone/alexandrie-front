@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3" *ngFor="let card of cards">
+      <mat-card class="mat-elevation-z8">
+        <div class="alternate-theme">
+          <img mat-card-image src="assets/HxH.png" />
+          <mat-card-content>
+            <mat-card-title>{{ card.title }}</mat-card-title>
+            <mat-card-footer>{{ card.Author }}</mat-card-footer>
+            <label>{{ card.Type }}</label>
+            <mat-card-footer>{{ card.Creation }}</mat-card-footer>
+          </mat-card-content>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

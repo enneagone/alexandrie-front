@@ -1,0 +1,75 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~@angular/material/theming';
+@include mat-core();
+
+.mat-card {
+  background-color: #7c72a0;
+}
+
+::ng-deep .mat-card {
+  margin-top: 25px;
+  width: 204px;
+  height: 390px;
+  text-align: center;
+  padding: 0 !important;
+  border-radius: 10px !important;
+}
+
+mat-card img {
+  object-fit: cover; /*this makes the image in src fit to the size specified below*/
+  width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+  height: 300px;
+}
+
+.mat-card-title {
+  font-size: 12px;
+}
+
+.Type {
+}
+
+label {
+  margin-left: 140px;
+  font-size: 11px;
+}
+.mat-card-footer {
+  text-align: left;
+  font-size: 11px;
+  display: inline-list-item;
+  margin-left: 1px;
+}
+
+.description {
+  border: 1px solid red;
+  display: inline-block;
+  width: 100%;
+}
+tr td {
+  border: 1px solid black;
+}
+
+::ng-deep .mat-card-content {
+  padding: 0 !important;
+}
+/**
+::ng-deep .mat-card-content {
+
+}
+$my-app-primary: mat-palette($mat-blue-grey);
+$my-app-accent:  mat-palette($mat-pink, 500, 900, A100);
+$my-app-warn:    mat-palette($mat-deep-orange);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);
+
+.alternate-theme {
+  $alternate-primary: mat-palette($mat-light-blue);
+  $alternate-accent:  mat-palette($mat-yellow, 400);
+  $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
+  @include angular-material-theme($alternate-theme);
+}
+**/
+.col-md-3 {
+  width: 200px;
+  margin-right: 50px;
+  display: inline-block;
+}
