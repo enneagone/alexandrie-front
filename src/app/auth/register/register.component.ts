@@ -4,13 +4,32 @@ import { UserService } from '../../core/services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // @ts-ignore
 import { SelectItem } from 'primeng/primeng';
+import { User } from '../../core/models';
 
+// tslint:disable-next-line:prettier
 @Component({
   selector: 'alx-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: UserService,
+  ) {
+    for (let i = 0; i < 40; ++i) {
+      // @ts-ignore
+      this.years.push(this.currentDate.getFullYear() - i);
+    }
+    this.authenticationService.userKnown();
+  }
+
+  get f() {
+    return this.loginForm.controls;
+  }
+  private currentUser: User;
   loginForm: FormGroup;
   loading = false;
   submitted = false;
@@ -34,21 +53,6 @@ export class RegisterComponent implements OnInit {
   years: Array<Int32Array>[] = [];
   currentDate = new Date();
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private authenticationService: UserService,
-  ) {
-    for (let i = 0; i < 40; ++i) {
-      // @ts-ignore
-      this.years.push(this.currentDate.getFullYear() - i);
-    }
-    if (this.authenticationService.isAuthenticated) {
-      this.router.navigate(['/']);
-    }
-  }
-
   ngOnInit(): void {
     this.numbers = new Array(31)
       .fill(undefined, undefined, undefined)
@@ -59,10 +63,15 @@ export class RegisterComponent implements OnInit {
       email: ['', Validators.required],
     });
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
-  }
-
-  get f() {
-    return this.loginForm.controls;
+    this.currentUser = new (class implements User {
+      birthDate: Array<string>;
+      city: string;
+      country: string;
+      email: string;
+      password: string;
+      token: string;
+      username: string;
+    })();
   }
 
   onSubmit() {
@@ -72,11 +81,11 @@ export class RegisterComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
+    this.currentUser.username = this.f.username.value;
+    this.currentUser.email = this.f.email.value;
+    this.currentUser.password = this.f.password.value;
+
     this.loading = true;
-    this.authenticationService.register(
-      this.f.email.value,
-      this.f.username.value,
-      this.f.password.value,
-    );
+    this.authenticationService.register(this.currentUser);
   }
 }

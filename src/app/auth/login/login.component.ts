@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../core/services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '../../core/models';
 
 @Component({
   selector: 'alx-login',
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   error: string;
+  private currentUser: User;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,6 +34,15 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+    this.currentUser = new (class implements User {
+      birthDate: Array<string>;
+      city: string;
+      country: string;
+      email: string;
+      password: string;
+      token: string;
+      username: string;
+    })();
   }
 
   get f() {
@@ -46,6 +57,8 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.authenticationService.login(this.f.Email.value, this.f.password.value);
+    this.currentUser.email = this.f.Email.value;
+    this.currentUser.password = this.f.password.value;
+    this.authenticationService.login(this.currentUser);
   }
 }
