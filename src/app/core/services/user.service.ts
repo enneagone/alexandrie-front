@@ -5,7 +5,6 @@ import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
 import { User } from '../models';
 
-// @ts-ignore
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
