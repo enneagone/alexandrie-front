@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      Email: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
     });
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.currentUser.email = this.f.Email.value;
+    this.currentUser.email = this.f.email.value;
     this.currentUser.password = this.f.password.value;
     this.authenticationService.login(this.currentUser);
   }

@@ -8,12 +8,12 @@
       <br />
       <input
         type="text"
-        formControlName="Email"
+        formControlName="email"
         class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.Email.errors }"
+        [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
       />
-      <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
-        <div *ngIf="f.Email.errors.required">Username is required</div>
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Username is required</div>
       </div>
     </div>
     <div class="form-group-Password">

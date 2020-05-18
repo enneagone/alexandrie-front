@@ -44,12 +44,12 @@
             <br />
             <input
               type="text"
-              formControlName="email"
+              formControlName="country"
               class="form-control"
-              [ngClass]="{ 'is-valid': submitted && f.email.errors }"
+              [ngClass]="{ 'is-valid': submitted && f.country.errors }"
             />
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-              <div *ngIf="f.email.errors.required">country is required</div>
+            <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+              <div *ngIf="f.country.errors.required">country is required</div>
             </div>
           </div>
         </td>
@@ -59,12 +59,12 @@
             <br />
             <input
               type="text"
-              formControlName="email"
+              formControlName="city"
               class="form-control"
-              [ngClass]="{ 'is-valid': submitted && f.email.errors }"
+              [ngClass]="{ 'is-valid': submitted && f.city.errors }"
             />
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-              <div *ngIf="f.email.errors.required">city is required</div>
+            <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+              <div *ngIf="f.city.errors.required">city is required</div>
             </div>
           </div>
         </td>
@@ -73,25 +73,52 @@
         <label> Birth date </label>
         <br />
         <td>
-          <select>
-            <option *ngFor="let number of numbers" [value]="number">{{
-              number
-            }}</option>
-          </select>
+          <div class="form-group-birthDay">
+            <select
+              formControlName="day"
+              class="form-control"
+              [ngClass]="{ 'is-valid:': submitted && f.day.errors }"
+            >
+              <option *ngFor="let number of numbers" [value]="number">{{
+                number
+              }}</option>
+            </select>
+            <div *ngIf="submitted && f.day.errors" class="invalid-feedback">
+              <div *ngIf="f.day.errors.required">day is required</div>
+            </div>
+          </div>
         </td>
         <td>
-          <select>
-            <option [value]="mounth" *ngFor="let mounth of mounths">
-              {{ mounth }}</option
+          <div class="form-group-mounth">
+            <select
+              formControlName="mounth"
+              class="form-control"
+              [ngClass]="{ 'is-valid:': submitted && f.mounth.errors }"
             >
-          </select>
+              <option [value]="mounth" *ngFor="let mounth of mounths">
+                {{ mounth }}</option
+              >
+            </select>
+            <div *ngIf="submitted && f.mounth.errors" class="invalid-feedback">
+              <div *ngIf="f.mounth.errors.required">mounth is required</div>
+            </div>
+          </div>
         </td>
         <td>
-          <select>
-            <option [value]="year" *ngFor="let year of years">
-              {{ year }}</option
+          <div class="form-group-year">
+            <select
+              formControlName="year"
+              class="form-control"
+              [ngClass]="{ 'is-valid:': submitted && f.year.errors }"
             >
-          </select>
+              <option [value]="year" *ngFor="let year of years">
+                {{ year }}</option
+              >
+            </select>
+            <div *ngIf="submitted && f.year.errors" class="invalid-feedback">
+              <div *ngIf="f.year.errors.required">year is required</div>
+            </div>
+          </div>
         </td>
       </tr>
       <tr>

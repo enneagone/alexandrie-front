@@ -8,7 +8,7 @@ import { CoreModule } from './core';
 
 import { LoginComponent } from './auth/login';
 import { RegisterComponent } from './auth/register';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent],
@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     HttpClientModule,
     CoreModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
