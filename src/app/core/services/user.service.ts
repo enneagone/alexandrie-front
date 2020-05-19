@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, ReplaySubject } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { ReplaySubject } from 'rxjs';
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
-import { User } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -24,13 +23,8 @@ export class UserService {
   ) {}
   userKnown() {
     if (this.jwtService.getToken()) {
-      const headers = new HttpHeaders({
-        'Content-Type': 'text',
-        'Authorization': 'Bearer ' + this.jwtService.getToken(),
-      });
-      this.apiService.get('/users/current', headers).subscribe(
+      this.apiService.get('/users/current').subscribe(
         (data) => {
-          console.log(data);
           this.setAuth(data);
         },
         (err) => this.purgeAuth,
@@ -40,58 +34,41 @@ export class UserService {
     }
   }
 
-  setAuth(user: User) {
-    this.jwtService.saveToken(user.token);
+  setAuth(token: string) {
+    this.jwtService.saveToken(token);
     this.isAuthenticatedSubject.next(true);
   }
 
   purgeAuth() {
     // Remove JWT from localstorage
     this.jwtService.destroyToken();
-    // Set auth status to false
     this.isAuthenticatedSubject.next(false);
   }
 
-  login(user: User) {
+  login(email: string, password: string) {
     const parameters = new HttpParams({
-      fromString: 'username=' + user.email + '&password=' + user.password,
+      fromString: 'username=' + email + '&password=' + password,
     });
 
-    return (
-      this.apiService
-        .post('/public/users/login', parameters)
-        // tslint:disable-next-line:ban-types
-        .subscribe(
-          (data) => {
-            user.token = data;
-            this.setAuth(user);
-          },
-          (error) => console.log(error),
-        )
+    return this.apiService.post('/public/users/login', parameters).subscribe(
+      (data) => {
+        this.setAuth(data);
+      },
+      (err) => this.purgeAuth,
     );
   }
 
-  register(user: User) {
-    // console.log('Information : ' + email + ' ' + username + ' ' + password);
+  register(username: string, email: string, password: string) {
     const parameters = new HttpParams({
       fromString:
-        'username=' +
-        user.username +
-        '&email=' +
-        user.email +
-        '&password=' +
-        user.password,
+        'username=' + username + '&email=' + email + '&password=' + password,
     });
-    console.log(' Parameters : ' + parameters);
 
     return this.apiService.post('/public/users/register', parameters).subscribe(
       (data) => {
-        user.token = data;
-        this.setAuth(user);
+        this.setAuth(data.toString());
       },
-      (error) => {
-        console.log(error);
-      },
+      (error) => this.purgeAuth,
     );
   }
 }

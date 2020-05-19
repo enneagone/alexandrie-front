@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, Subscription, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 import { JwtService } from './jwt.service';
 import { catchError } from 'rxjs/operators';
@@ -12,7 +12,6 @@ export class ApiService {
   constructor(private http: HttpClient, private jwtService: JwtService) {}
 
   private static formatErrors(error: any) {
-    console.log(error.error);
     return throwError(error.error);
   }
 

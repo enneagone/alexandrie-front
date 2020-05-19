@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // @ts-ignore
 import { SelectItem } from 'primeng/primeng';
 import { User } from '../../core/models';
+import { map } from 'rxjs/operators';
 
 // tslint:disable-next-line:prettier
 @Component({
@@ -19,6 +20,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private authenticationService: UserService,
   ) {
+    // TODO creer un composant angular pour la selection dans date
     for (let i = 0; i < 40; ++i) {
       // @ts-ignore
       this.years.push(this.currentDate.getFullYear() - i);
@@ -29,13 +31,12 @@ export class RegisterComponent implements OnInit {
   get f() {
     return this.loginForm.controls;
   }
-  private currentUser: User;
   loginForm: FormGroup;
   loading = false;
   submitted = false;
   error: string;
-  returnUrl: string;
   numbers: SelectItem[] = [];
+  // TODO creer un composant angular pour la selection dans date
   mounths = [
     'January',
     'Febuary',
@@ -67,39 +68,29 @@ export class RegisterComponent implements OnInit {
       mounth: ['', Validators.required],
       year: ['', Validators.required],
     });
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
-    this.currentUser = new (class implements User {
-      birthDate: Array<string>;
-      city: string;
-      country: string;
-      email: string;
-      password: string;
-      token: string;
-      username: string;
-    })();
   }
 
   onSubmit() {
     this.submitted = true;
 
-    // stop here if form is invalid
     if (this.loginForm.invalid) {
-      console.log('Erreur !');
+      alert('Erreur ! Information menquante dans le formulaire');
       return;
     }
-    this.currentUser.username = this.f.username.value;
-    this.currentUser.email = this.f.email.value;
-    this.currentUser.password = this.f.password.value;
-
-    this.currentUser.birthDate = new Array<string>();
-    this.currentUser.birthDate.push(
-      this.f.day.value,
-      this.f.mounth.value,
-      this.f.year.value,
-    );
-    this.currentUser.country = this.f.country.value;
-    this.currentUser.city = this.f.city.value;
     this.loading = true;
-    this.authenticationService.register(this.currentUser);
+
+    this.authenticationService.register(
+      this.f.username.value,
+      this.f.email.value,
+      this.f.password.value,
+    );
+    if (
+      this.authenticationService.isAuthenticated.pipe(map((isAuth) => isAuth))
+    ) {
+      this.router.navigateByUrl('/home');
+    } else {
+      alert('register failed');
+      this.loginForm.reset();
+    }
   }
 }

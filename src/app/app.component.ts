@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
-import { JwtService } from './core';
+import { UserService } from './core';
 
 @Component({
   selector: 'alx-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'alexandrie-front';
-  isOnLogin = true;
-  isOnRegister = false;
-  constructor(private jwtService: JwtService) {}
+
+  constructor(private userService: UserService) {}
+
+  ngOnInit(): void {
+    // TODO redirection on home page with userService
+  }
 }
