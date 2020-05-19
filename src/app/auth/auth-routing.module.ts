@@ -6,14 +6,14 @@ import { NoAuthGuard } from './no-auth-guard.service';
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: '',
     component: LoginComponent,
-    // canActivate: [NoAuthGuard],
+    canActivate: [NoAuthGuard],
   },
   {
     path: 'register',
     component: RegisterComponent,
-    // canActivate: [NoAuthGuard],
+    canActivate: [NoAuthGuard],
   },
 ];
 

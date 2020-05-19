@@ -10,6 +10,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [AuthRoutingModule, CommonModule, ReactiveFormsModule],
   declarations: [RegisterComponent, LoginComponent],
-  // providers: [NoAuthGuard],
+  providers: [NoAuthGuard],
 })
 export class AuthModule {}

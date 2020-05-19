@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from '../../core/services';
+import { UserService, JwtService } from '../../core/services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgZone } from '@angular/core';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -13,13 +14,14 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
-  returnUrl: string;
   error: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private jwtService: JwtService,
+    private ngZone: NgZone,
     private authenticationService: UserService,
   ) {}
 

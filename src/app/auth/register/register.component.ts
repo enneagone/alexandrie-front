@@ -25,7 +25,6 @@ export class RegisterComponent implements OnInit {
       // @ts-ignore
       this.years.push(this.currentDate.getFullYear() - i);
     }
-    this.authenticationService.userKnown();
   }
 
   get f() {
