@@ -1,0 +1,26 @@
+.Authentification {
+  /**margin-top: 100px;**/
+  &[align='end'] {
+    justify-content: flex-end;
+  }
+
+  &[align='center'] {
+    margin-top: 40px;
+    justify-content: center;
+  }
+}
+
+#Logo {
+  float: left;
+}
+
+.componentAuth {
+  &[align='center'] {
+    justify-content: center;
+    text-align: left;
+  }
+}
+
+#Login {
+  margin-right: 30px;
+}
