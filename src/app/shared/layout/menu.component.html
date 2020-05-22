@@ -1,14 +1,14 @@
 <a href="/home">
   <img src="assets/Logo.png" />
 </a>
-<div *ngIf="this.isActive">
+<div *ngIf="this.isUserActive()">
   <ul>
     <li><a class="active" href="#home">Home</a></li>
     <li><a href="#">Profil</a></li>
     <li><a href="#">Ma Collection</a></li>
   </ul>
 </div>
-<div *ngIf="!this.isActive">
+<div *ngIf="!this.isUserActive()">
   <ul>
     <li><a [routerLink]="['/home']" routerLinkActive="active">Home</a></li>
     <li>
