@@ -10,8 +10,10 @@ import { CoreModule } from './core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeModule } from './home/home.module';
 
+import { MenuComponent } from './shared';
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MenuComponent],
   imports: [
     BrowserModule,
     AuthModule,

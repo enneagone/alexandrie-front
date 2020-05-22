@@ -1,0 +1,29 @@
+$violet: #cc99ff;
+$violet-claire: #e6ccff;
+
+img {
+  width: 70%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+  &.active {
+    background-color: $violet;
+  }
+  &:hover {
+    background-color: $violet-claire;
+  }
+}

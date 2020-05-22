@@ -1,3 +1,5 @@
+$violet-backgroud: #ddccff;
+
 .Authentification {
   /**margin-top: 100px;**/
   &[align='end'] {
@@ -10,10 +12,6 @@
   }
 }
 
-#Logo {
-  float: left;
-}
-
 .componentAuth {
   &[align='center'] {
     justify-content: center;
@@ -23,4 +21,14 @@
 
 #Login {
   margin-right: 30px;
+}
+
+alx-layout-menu {
+  width: 20%;
+  height: 100%; /* Full height */
+  position: fixed; /* Make it stick, even on scroll */
+  overflow: auto; /* Enable scrolling if the sidenav has too much content */
+  margin: 0;
+  padding: 0;
+  background-color: $violet-backgroud;
 }
