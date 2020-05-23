@@ -18,7 +18,6 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private jwtService: JwtService,
     private authenticationService: UserService,
   ) {
     // TODO creer un composant angular pour la selection dans date
@@ -85,14 +84,5 @@ export class RegisterComponent implements OnInit {
       this.f.email.value,
       this.f.password.value,
     );
-
-    this.authenticationService.loggedIn.subscribe((value) => {
-      if (value) {
-        this.router.navigateByUrl('/home');
-      } else {
-        alert('register failed');
-        this.loginForm.reset();
-      }
-    });
   }
 }

@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private jwtService: JwtService,
     private authenticationService: UserService,
   ) {}
 
@@ -41,13 +40,5 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.authenticationService.login(this.f.email.value, this.f.password.value);
-    this.authenticationService.loggedIn.subscribe((value) => {
-      if (value) {
-        this.router.navigateByUrl('/home');
-      } else {
-        alert('login failed');
-        this.loginForm.reset();
-      }
-    });
   }
 }
