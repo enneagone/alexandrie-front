@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from '../../core/services';
+import { JwtService, UserService } from '../../core/services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // @ts-ignore
 import { SelectItem } from 'primeng/primeng';
 import { User } from '../../core/models';
-import { map } from 'rxjs/operators';
+import { concatMap, map } from 'rxjs/operators';
 
 // tslint:disable-next-line:prettier
 @Component({
@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private jwtService: JwtService,
     private authenticationService: UserService,
   ) {
     // TODO creer un composant angular pour la selection dans date
@@ -30,6 +31,7 @@ export class RegisterComponent implements OnInit {
   get f() {
     return this.loginForm.controls;
   }
+
   loginForm: FormGroup;
   loading = false;
   submitted = false;
@@ -83,13 +85,14 @@ export class RegisterComponent implements OnInit {
       this.f.email.value,
       this.f.password.value,
     );
-    if (
-      this.authenticationService.isAuthenticated.pipe(map((isAuth) => isAuth))
-    ) {
-      this.router.navigateByUrl('/home');
-    } else {
-      alert('register failed');
-      this.loginForm.reset();
-    }
+
+    this.authenticationService.loggedIn.subscribe((value) => {
+      if (value) {
+        this.router.navigateByUrl('/home');
+      } else {
+        alert('register failed');
+        this.loginForm.reset();
+      }
+    });
   }
 }

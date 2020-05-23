@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
-  public isAuthenticated = this.isAuthenticatedSubject.asObservable();
+  private readonly loggedInSubject: ReplaySubject<boolean> = new ReplaySubject(
+    1,
+  );
+  readonly loggedIn: Observable<boolean> = this.loggedInSubject.asObservable();
 
   /*
    * maintenant l'adresse est dans le fichier proxy.config.js
@@ -36,13 +38,13 @@ export class UserService {
 
   setAuth(token: string) {
     this.jwtService.saveToken(token);
-    this.isAuthenticatedSubject.next(true);
+    this.loggedInSubject.next(true);
   }
 
   purgeAuth() {
     // Remove JWT from localstorage
     this.jwtService.destroyToken();
-    this.isAuthenticatedSubject.next(false);
+    this.loggedInSubject.next(false);
   }
 
   login(email: string, password: string) {

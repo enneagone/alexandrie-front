@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private jwtService: JwtService,
-    private ngZone: NgZone,
     private authenticationService: UserService,
   ) {}
 
@@ -42,13 +41,13 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.authenticationService.login(this.f.email.value, this.f.password.value);
-    if (
-      this.authenticationService.isAuthenticated.pipe(map((isAuth) => isAuth))
-    ) {
-      this.router.navigateByUrl('/home');
-    } else {
-      alert('login failed');
-      this.loginForm.reset();
-    }
+    this.authenticationService.loggedIn.subscribe((value) => {
+      if (value) {
+        this.router.navigateByUrl('/home');
+      } else {
+        alert('login failed');
+        this.loginForm.reset();
+      }
+    });
   }
 }
