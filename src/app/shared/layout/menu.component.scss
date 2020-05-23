@@ -1,8 +1,9 @@
 $violet: #cc99ff;
-$violet-claire: #e6ccff;
+$violet-claire: #d9b3ff;
 
 img {
   width: 50%;
+  padding: 10% 2% 10% 5%;
 }
 
 ul {
@@ -15,15 +16,32 @@ ul {
   overflow: auto;
 }
 
-li a {
+li {
+  padding-top: 5%;
+}
+
+a {
   display: block;
   color: #000;
-  padding: 8px 16px;
+  padding: 10% 16px;
   text-decoration: none;
+
+  font-size: 160%;
   &.active {
     background-color: $violet;
   }
   &:hover {
     background-color: $violet-claire;
+  }
+
+  &#info {
+    position: absolute;
+    bottom: 0;
+    width: 92%;
+  }
+
+  fa-icon {
+    padding-left: 10%;
+    padding-right: 5%;
   }
 }
