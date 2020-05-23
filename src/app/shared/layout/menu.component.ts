@@ -1,6 +1,15 @@
 import { Component } from '@angular/core';
 import { JwtService } from '../../core';
 
+import {
+  faHome,
+  faUserAlt,
+  faPhotoVideo,
+  faSignInAlt,
+  faUserPlus,
+  faInfoCircle,
+} from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'alx-layout-menu',
   templateUrl: './menu.component.html',
@@ -9,11 +18,14 @@ import { JwtService } from '../../core';
 export class MenuComponent {
   constructor(private jwtService: JwtService) {}
 
+  Home = faHome;
+  User = faUserAlt;
+  Media = faPhotoVideo;
+  SignInAlt = faSignInAlt;
+  Register = faUserPlus;
+  Info = faInfoCircle;
+
   isUserActive() {
-    if (this.jwtService.getToken() != null) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.jwtService.getToken() != null;
   }
 }
