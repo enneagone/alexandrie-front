@@ -1,9 +1,11 @@
 export interface User {
+  firstName: string;
+  lastName: string;
+  birthDate: string;
+  country: string;
+  city: string;
   email: string;
-  token: string;
+  picture: string;
   password: string;
   username: string;
-  city: string;
-  country: string;
-  birthDate: Array<string>;
 }
