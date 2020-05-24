@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ReplaySubject } from 'rxjs';
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
+import { User } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -58,17 +59,14 @@ export class UserService {
     );
   }
 
-  register(username: string, email: string, password: string) {
-    const parameters = new HttpParams({
-      fromString:
-        'username=' + username + '&email=' + email + '&password=' + password,
-    });
-
-    return this.apiService.post('/public/users/register', parameters).subscribe(
-      (data) => {
-        this.setAuth(data.toString());
-      },
-      (error) => this.purgeAuth,
-    );
+  register(user: User) {
+    return this.apiService
+      .postWithRegister('/public/users/register', user)
+      .subscribe(
+        (data) => {
+          this.setAuth(data.toString());
+        },
+        (error) => this.purgeAuth,
+      );
   }
 }
