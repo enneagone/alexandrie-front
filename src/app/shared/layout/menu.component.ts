@@ -6,7 +6,6 @@ import {
   faUserAlt,
   faPhotoVideo,
   faSignInAlt,
-  faUserPlus,
   faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -22,7 +21,6 @@ export class MenuComponent {
   User = faUserAlt;
   Media = faPhotoVideo;
   SignInAlt = faSignInAlt;
-  Register = faUserPlus;
   Info = faInfoCircle;
 
   isUserActive() {

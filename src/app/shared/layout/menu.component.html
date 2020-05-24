@@ -10,18 +10,21 @@
         >
       </li>
       <li>
-        <a href="#"><fa-icon [icon]="User"></fa-icon>Profil</a>
+        <a href="#"><fa-icon [icon]="User"></fa-icon>My Account</a>
       </li>
       <li>
-        <a href="#"><fa-icon [icon]="Media"></fa-icon>Ma Collection</a>
+        <a href="#"><fa-icon [icon]="Media"></fa-icon>My Collection</a>
       </li>
     </ul>
+    <a id="info" [routerLink]="['/info']"
+      ><fa-icon [icon]="Info"></fa-icon>Info</a
+    >
   </div>
   <div class="item-menu" *ngIf="!this.isUserActive()">
     <ul>
       <li>
-        <a [routerLink]="['/home']" routerLinkActive="active"
-          ><fa-icon [icon]="Home"></fa-icon>Home</a
+        <a [routerLink]="['/info']" routerLinkActive="active"
+          ><fa-icon [icon]="Info"></fa-icon>Info</a
         >
       </li>
       <li>
@@ -31,5 +34,4 @@
       </li>
     </ul>
   </div>
-  <a id="info" [routerLink]="['/#']"><fa-icon [icon]="Info"></fa-icon>Info</a>
 </div>

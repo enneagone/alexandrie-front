@@ -5,21 +5,18 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { Observable } from 'rxjs';
 
 import { JwtService } from '../core';
-import { take } from 'rxjs/operators';
 
 @Injectable()
-export class HomeAuthResolver implements Resolve<boolean> {
+export class InfoAuthResolver implements Resolve<boolean> {
   constructor(private router: Router, private jwtService: JwtService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.jwtService.getToken()) {
       return true;
     } else {
-      this.router.navigate(['/info']);
-      return false;
+      return true;
     }
   }
 }

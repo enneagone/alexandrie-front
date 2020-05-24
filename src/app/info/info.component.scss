@@ -1,0 +1,45 @@
+$violet: #cc99ff;
+$gris-claire: rgba(124, 114, 160, 0.1);
+$titre-secondary: #e9c071;
+
+* {
+  margin-left: 20%;
+}
+
+#Infos {
+  margin-left: 3%;
+  font-size: 140%;
+  #free {
+    color: red;
+  }
+  #notice {
+    font-size: 20%;
+  }
+  h2 {
+    color: $titre-secondary;
+  }
+  p {
+    #Media {
+      margin-left: 0;
+      color: $violet;
+    }
+    * {
+      margin-left: 0;
+    }
+    a {
+      color: $violet;
+    }
+  }
+}
+
+#Titre {
+  padding: 2% 0 2% 10%;
+  background-color: $gris-claire;
+  color: $violet;
+  font-size: 160%;
+  position: center;
+  h4 {
+    padding-left: 10%;
+    color: $titre-secondary;
+  }
+}
