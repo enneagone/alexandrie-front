@@ -5,16 +5,41 @@
       <tr>
         <td>
           <div class="form-group-name">
-            <label>Name</label>
+            <label>First Name</label>
             <br />
             <input
               type="text"
-              formControlName="email"
+              formControlName="firstName"
               class="form-control"
-              [ngClass]="{ 'is-valid': submitted && f.email.errors }"
+              [ngClass]="{ 'is-valid': submitted && f.firstName.errors }"
             />
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-              <div *ngIf="f.email.errors.required">Name is required</div>
+            <div
+              *ngIf="submitted && f.firstName.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.firstName.errors.required">
+                First name is required
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="form-group-name">
+            <label>Last Name</label>
+            <br />
+            <input
+              type="text"
+              formControlName="lastName"
+              class="form-control"
+              [ngClass]="{ 'is-valid': submitted && f.lastName.errors }"
+            />
+            <div
+              *ngIf="submitted && f.lastName.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.lastName.errors.required">
+                Last name is required
+              </div>
             </div>
           </div>
         </td>

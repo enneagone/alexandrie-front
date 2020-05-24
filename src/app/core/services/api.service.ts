@@ -38,6 +38,13 @@ export class ApiService {
       .pipe(catchError(ApiService.formatErrors));
   }
 
+  // tslint:disable-next-line:ban-types
+  postWithRegister(path: string, body: any): Observable<any> {
+    return this.http
+      .post(`${environment.api_url}${path}`, JSON.stringify(body))
+      .pipe(catchError(ApiService.formatErrors));
+  }
+
   delete(path: string): Observable<any> {
     return this.http
       .delete(`${environment.api_url}${path}`)

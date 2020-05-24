@@ -14,6 +14,40 @@ import { concatMap, map } from 'rxjs/operators';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+  loginForm: FormGroup;
+  loading = false;
+  submitted = false;
+  error: string;
+  numbers: SelectItem[] = [];
+  // TODO creer un composant angular pour la selection dans date
+  mounths: Array<string> = [
+    '01',
+    '02',
+    '03',
+    '04',
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '10',
+    '11',
+    '12',
+  ];
+  years: Array<Int32Array>[] = [];
+  currentDate = new Date();
+  user: User = new (class implements User {
+    firstName: string;
+    lastName: string;
+    picture: string;
+    birthDate: string;
+    city: string;
+    country: string;
+    email: string;
+    password: string;
+    username: string;
+  })();
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -30,6 +64,7 @@ export class RegisterComponent implements OnInit {
   get f() {
     return this.loginForm.controls;
   }
+<<<<<<< HEAD
 
   loginForm: FormGroup;
   loading = false;
@@ -53,12 +88,15 @@ export class RegisterComponent implements OnInit {
   ];
   years: Array<Int32Array>[] = [];
   currentDate = new Date();
+=======
+>>>>>>> :construction: update register form
 
   ngOnInit(): void {
-    this.numbers = new Array(31)
-      .fill(undefined, undefined, undefined)
-      .map((x, i) => i);
+    this.numbers = new Array(32).fill(undefined, 1, undefined).map((x, i) => i);
+    this.numbers.shift();
     this.loginForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required],
       email: ['', Validators.required],
@@ -79,10 +117,34 @@ export class RegisterComponent implements OnInit {
     }
     this.loading = true;
 
+<<<<<<< HEAD
     this.authenticationService.register(
       this.f.username.value,
       this.f.email.value,
       this.f.password.value,
     );
+=======
+    const today =
+      this.f.year.value + '-' + this.f.mounth.value + '-' + this.f.day.value;
+    this.user.firstName = this.f.firstName.value;
+    this.user.lastName = this.f.lastName.value;
+    this.user.birthDate = today;
+    this.user.country = this.f.country.value;
+    this.user.city = this.f.city.value;
+    this.user.email = this.f.email.value;
+    this.user.picture = 'none';
+    this.user.username = this.f.username.value;
+    this.user.password = this.f.password.value;
+
+    this.authenticationService.register(this.user);
+    if (
+      this.authenticationService.isAuthenticated.pipe(map((isAuth) => isAuth))
+    ) {
+      this.router.navigateByUrl('/home');
+    } else {
+      alert('register failed');
+      this.loginForm.reset();
+    }
+>>>>>>> :construction: update register form
   }
 }
