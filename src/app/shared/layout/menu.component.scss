@@ -1,9 +1,13 @@
 $violet: #cc99ff;
-$violet-claire: #d9b3ff;
+$violet-claire: rgba(124, 114, 160, 0.1);
 
 img {
+  padding: 5% 2% 5% 5%;
   width: 50%;
-  padding: 10% 2% 10% 5%;
+}
+
+.item-menu {
+  margin-top: 5%;
 }
 
 ul {
@@ -22,15 +26,16 @@ li {
 
 a {
   display: block;
-  color: #000;
-  padding: 10% 16px;
+  padding: 10% 10%;
   text-decoration: none;
-
+  color: #bfbfbf;
   font-size: 160%;
+
   &.active {
-    background-color: $violet;
+    background-color: $violet-claire;
+    color: $violet;
   }
-  &:hover {
+  &:hover:not(#logo) {
     background-color: $violet-claire;
   }
 
