@@ -1,5 +1,5 @@
 $violet: #cc99ff;
-$violet-claire: rgba(124, 114, 160, 0.1);
+$gris-claire: rgba(124, 114, 160, 0.1);
 
 img {
   padding: 5% 2% 5% 5%;
@@ -32,11 +32,11 @@ a {
   font-size: 160%;
 
   &.active {
-    background-color: $violet-claire;
+    background-color: $gris-claire;
     color: $violet;
   }
   &:hover:not(#logo) {
-    background-color: $violet-claire;
+    background-color: $gris-claire;
   }
 
   &#info {
