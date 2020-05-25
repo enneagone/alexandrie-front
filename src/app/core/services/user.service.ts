@@ -3,11 +3,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
-<<<<<<< HEAD
 import { BehaviorSubject, Observable } from 'rxjs';
-=======
 import { User } from '../models';
->>>>>>> :construction: update register form
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -52,8 +49,8 @@ export class UserService {
   }
 
   setAuth(token: string) {
-    this.currentUserSubject.next(true);
     this.jwtService.saveToken(token);
+    this.currentUserSubject.next(true);
     this.router.navigate(['/home']);
   }
 
@@ -64,9 +61,9 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
-  login(email: string, password: string) {
+  login(username: string, password: string) {
     const parameters = new HttpParams({
-      fromString: 'username=' + email + '&password=' + password,
+      fromString: 'username=' + username + '&password=' + password,
     });
 
     return this.apiService.post('/public/users/login', parameters).subscribe(
