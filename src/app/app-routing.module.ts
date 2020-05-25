@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { MyCollectionComponent } from './my-collection/my-collection.component';
 
 const routes: Routes = [
   {
@@ -7,6 +8,7 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full',
   },
+  { path: 'create-media', component: MyCollectionComponent },
 ];
 
 @NgModule({
