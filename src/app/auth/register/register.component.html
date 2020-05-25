@@ -7,12 +7,12 @@
           <div class="form-group-name">
             <label>First Name</label>
             <br />
-            <input
+            <e9-input
               type="text"
               formControlName="firstName"
               class="form-control"
               [ngClass]="{ 'is-valid': submitted && f.firstName.errors }"
-            />
+            ></e9-input>
             <div
               *ngIf="submitted && f.firstName.errors"
               class="invalid-feedback"
@@ -27,12 +27,12 @@
           <div class="form-group-name">
             <label>Last Name</label>
             <br />
-            <input
+            <e9-input
               type="text"
               formControlName="lastName"
               class="form-control"
               [ngClass]="{ 'is-valid': submitted && f.lastName.errors }"
-            />
+            ></e9-input>
             <div
               *ngIf="submitted && f.lastName.errors"
               class="invalid-feedback"
@@ -47,12 +47,12 @@
           <div class="form-group-username">
             <label>Username</label>
             <br />
-            <input
+            <e9-input
               type="text"
               formControlName="username"
               class="form-control"
               [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
-            />
+            ></e9-input>
             <div
               *ngIf="submitted && f.username.errors"
               class="invalid-feedback"
@@ -67,12 +67,12 @@
           <div class="form-group-country">
             <label>Country</label>
             <br />
-            <input
+            <e9-input
               type="text"
               formControlName="country"
               class="form-control"
               [ngClass]="{ 'is-valid': submitted && f.country.errors }"
-            />
+            ></e9-input>
             <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
               <div *ngIf="f.country.errors.required">country is required</div>
             </div>
@@ -82,12 +82,12 @@
           <div class="form-group-city">
             <label>City</label>
             <br />
-            <input
+            <e9-input
               type="text"
               formControlName="city"
               class="form-control"
               [ngClass]="{ 'is-valid': submitted && f.city.errors }"
-            />
+            ></e9-input>
             <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
               <div *ngIf="f.city.errors.required">city is required</div>
             </div>
@@ -151,14 +151,25 @@
           <div class="form-group-email">
             <label>Email</label>
             <br />
-            <input
+            <e9-input
               type="text"
               formControlName="email"
               class="form-control"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
               [ngClass]="{ 'is-valid': submitted && f.email.errors }"
-            />
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            ></e9-input>
+            <div
+              *ngIf="
+                submitted &&
+                f.email.errors &&
+                (f.email.touched || f.email.dirty)
+              "
+              class="invalid-feedback"
+            >
               <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.touched || f.email.dirty">
+                Email is required
+              </div>
             </div>
           </div>
         </td>
@@ -166,12 +177,12 @@
           <div class="form-group-password">
             <label>Password</label>
             <br />
-            <input
+            <e9-input
               type="password"
               formControlName="password"
               class="form-control"
               [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-            />
+            ></e9-input>
             <div
               *ngIf="submitted && f.password.errors"
               class="invalid-feedback"
@@ -183,13 +194,9 @@
       </tr>
       <tr>
         <div class="form-group-button">
-          <button [disabled]="loading" class="btn btn-primary">
-            <span
-              *ngIf="loading"
-              class="spinner-border spinner-border-sm mr-1"
-            ></span>
+          <e9-button [disabled]="false" class="btn btn-primary">
             Register
-          </button>
+          </e9-button>
         </div>
       </tr>
     </div>

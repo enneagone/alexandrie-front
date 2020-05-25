@@ -14,7 +14,6 @@ import { User } from '../../core/models';
 })
 export class RegisterComponent implements OnInit {
   loginForm: FormGroup;
-  loading = false;
   submitted = false;
   error: string;
   numbers: SelectItem[] = [];
@@ -76,14 +75,13 @@ export class RegisterComponent implements OnInit {
       alert('Erreur ! Information menquante dans le formulaire');
       return;
     }
-    this.loading = true;
 
-    const today =
-      this.f.year.value + '-' + this.f.mounth.value + '-' + this.f.day.value;
+    const today = this.f.year.value + this.f.mounth.value + this.f.day.value;
     this.user.firstName = this.f.firstName.value;
     this.user.lastName = this.f.lastName.value;
     // @ts-ignore
     this.user.birthDate = new Date(today);
+    this.user.birthDate = today;
     this.user.country = this.f.country.value;
     this.user.city = this.f.city.value;
     this.user.email = this.f.email.value;

@@ -18,6 +18,7 @@ export class UserService {
    * et il faut demarrer avec ng serve --proxy-config src/proxy.config.json
    * cf, ou j'ai trouvé la soluce : https://stackoverflow.com/questions/60169694/java-rest-call-get-url-neterr-failed
    */
+
   constructor(
     private apiService: ApiService,
     private http: HttpClient,

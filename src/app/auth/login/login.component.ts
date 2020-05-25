@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService, JwtService } from '../../core/services';
+import { UserService } from '../../core/services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgZone } from '@angular/core';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'alx-login',
