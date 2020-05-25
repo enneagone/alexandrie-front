@@ -18,7 +18,7 @@ export class HttpTokenInterceptor implements HttpInterceptor {
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     const headersConfig = {
-      'Content-Type': 'text/plain;charset=UTF-8',
+      'Content-Type': 'text/plain;charset=UTF-8; application/json',
     };
 
     const token = this.jwtService.getToken();
