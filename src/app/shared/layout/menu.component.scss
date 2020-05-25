@@ -1,28 +1,35 @@
 $violet: #cc99ff;
 $gris-claire: rgba(124, 114, 160, 0.1);
 
-img {
-  padding: 5% 2% 5% 5%;
-  width: 40%;
-}
-
-.menu-info {
-  background-color: $gris-claire;
-  height: 100%;
+.menu {
   img {
+    padding: 5% 2% 5% 5%;
     width: 40%;
   }
-  a {
-    pasdding: 5% 5%;
+}
+
+span {
+  position: absolute;
+  width: 150%;
+  left: 5%;
+
+  top: 80%;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 270px;
+  line-height: 316px;
+  letter-spacing: -0.05em;
+
+  color: rgba(124, 114, 160, 0.2);
+  display: none;
+  &.active {
+    display: block;
   }
 }
-
 .item-menu {
   margin-top: 5%;
-}
-
-.info {
-  padding-left: 50%;
 }
 
 ul {
@@ -33,6 +40,11 @@ ul {
   position: fixed;
   height: 100%;
   overflow: auto;
+
+  &.active {
+    background-color: $gris-claire;
+    color: $violet;
+  }
 }
 
 li {

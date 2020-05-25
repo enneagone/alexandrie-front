@@ -13,16 +13,12 @@ import { HomeModule } from './home/home.module';
 import { MenuComponent } from './shared';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { InfoModule } from './info/info.module';
-import { InfoComponent } from './info/info.component';
-
 @NgModule({
-  declarations: [AppComponent, MenuComponent, InfoComponent],
+  declarations: [AppComponent, MenuComponent],
   imports: [
     BrowserModule,
     AuthModule,
     HomeModule,
-    InfoModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,

@@ -19,11 +19,10 @@
   </div>
 </div>
 
-<div class="menu-info" *ngIf="!this.isUserActive()">
-  <div *ngIf="!this.isUserActive()">
-    <a class="logo" [routerLink]="['/home']">
-      <img src="assets/Logo.png" />
-    </a>
-    <alx-info></alx-info>
-  </div>
+<div *ngIf="!this.isUserActive()">
+  <a class="logo" [routerLink]="['/home']">
+    <img src="assets/Logo.png" />
+  </a>
+  <span [routerLink]="['/register']" routerLinkActive="active"> Register </span>
+  <span [routerLink]="['/login']" routerLinkActive="active"> login </span>
 </div>
