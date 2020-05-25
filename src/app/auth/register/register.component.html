@@ -152,23 +152,23 @@
             <label>Email</label>
             <br />
             <e9-input
-              type="text"
+              type="email"
               formControlName="email"
-              class="form-control"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-              [ngClass]="{ 'is-valid': submitted && f.email.errors }"
-            ></e9-input>
+              class="form-control"
+              [ngClass]="{
+                'is-valid':
+                  submitted &&
+                  f.email.errors &&
+                  (f.email.touched || f.email.dirty)}"></e9-input>
             <div
               *ngIf="
                 submitted &&
                 f.email.errors &&
                 (f.email.touched || f.email.dirty)
-              "
-              class="invalid-feedback"
-            >
+              "class="invalid-feedback">
               <div *ngIf="f.email.errors.required">Email is required</div>
               <div *ngIf="f.email.touched || f.email.dirty">
-                Email is required
               </div>
             </div>
           </div>
