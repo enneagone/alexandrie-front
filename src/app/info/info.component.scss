@@ -2,13 +2,10 @@ $violet: #cc99ff;
 $gris-claire: rgba(124, 114, 160, 0.1);
 $titre-secondary: #e9c071;
 
-* {
-  margin-left: 20%;
-}
-
 #Infos {
-  margin-left: 3%;
-  font-size: 140%;
+  padding-left: 2%;
+  position: center;
+
   #free {
     color: red;
   }
@@ -16,15 +13,11 @@ $titre-secondary: #e9c071;
     font-size: 20%;
   }
   h2 {
-    color: $titre-secondary;
+    color: $violet;
   }
   p {
     #Media {
-      margin-left: 0;
       color: $violet;
-    }
-    * {
-      margin-left: 0;
     }
     a {
       color: $violet;
@@ -33,13 +26,10 @@ $titre-secondary: #e9c071;
 }
 
 #Titre {
-  padding: 2% 0 2% 10%;
-  background-color: $gris-claire;
+  padding-left: 10%;
   color: $violet;
-  font-size: 160%;
-  position: center;
+  font-size: 100%;
   h4 {
-    padding-left: 10%;
     color: $titre-secondary;
   }
 }

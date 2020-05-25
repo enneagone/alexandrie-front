@@ -18,7 +18,7 @@ export class HomeAuthResolver implements CanActivate {
     if (this.jwtService.getToken()) {
       return true;
     } else {
-      this.router.navigate(['/info']);
+      this.router.navigate(['/login']);
       return false;
     }
   }
