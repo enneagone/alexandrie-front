@@ -5,10 +5,8 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { Observable } from 'rxjs';
 
 import { JwtService } from '../core';
-import { take } from 'rxjs/operators';
 
 @Injectable()
 export class HomeAuthResolver implements Resolve<boolean> {
@@ -18,7 +16,7 @@ export class HomeAuthResolver implements Resolve<boolean> {
     if (this.jwtService.getToken()) {
       return true;
     } else {
-      this.router.navigate(['/info']);
+      this.router.navigate(['/login']);
       return false;
     }
   }

@@ -1,8 +1,8 @@
-<div class="menu">
-  <a id="logo" [routerLink]="['/home']">
+<div class="menu" *ngIf="this.isUserActive()">
+  <a class="logo" [routerLink]="['/home']">
     <img src="assets/Logo.png" />
   </a>
-  <div class="item-menu" *ngIf="this.isUserActive()">
+  <div class="item-menu">
     <ul>
       <li>
         <a [routerLink]="['/home']" routerLinkActive="active"
@@ -16,22 +16,14 @@
         <a href="#"><fa-icon [icon]="Media"></fa-icon>My Collection</a>
       </li>
     </ul>
-    <a id="info" [routerLink]="['/info']"
-      ><fa-icon [icon]="Info"></fa-icon>Info</a
-    >
   </div>
-  <div class="item-menu" *ngIf="!this.isUserActive()">
-    <ul>
-      <li>
-        <a [routerLink]="['/info']" routerLinkActive="active"
-          ><fa-icon [icon]="Info"></fa-icon>Info</a
-        >
-      </li>
-      <li>
-        <a [routerLink]="['/login']" routerLinkActive="active"
-          ><fa-icon [icon]="SignInAlt"></fa-icon>Login</a
-        >
-      </li>
-    </ul>
+</div>
+
+<div class="menu-info" *ngIf="!this.isUserActive()">
+  <div *ngIf="!this.isUserActive()">
+    <a class="logo" [routerLink]="['/home']">
+      <img src="assets/Logo.png" />
+    </a>
+    <alx-info></alx-info>
   </div>
 </div>

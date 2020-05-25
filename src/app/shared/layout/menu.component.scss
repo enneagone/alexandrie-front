@@ -3,11 +3,26 @@ $gris-claire: rgba(124, 114, 160, 0.1);
 
 img {
   padding: 5% 2% 5% 5%;
-  width: 50%;
+  width: 40%;
+}
+
+.menu-info {
+  background-color: $gris-claire;
+  height: 100%;
+  img {
+    width: 40%;
+  }
+  a {
+    pasdding: 5% 5%;
+  }
 }
 
 .item-menu {
   margin-top: 5%;
+}
+
+.info {
+  padding-left: 50%;
 }
 
 ul {
@@ -30,12 +45,11 @@ a {
   text-decoration: none;
   color: #bfbfbf;
   font-size: 160%;
-
   &.active {
     background-color: $gris-claire;
     color: $violet;
   }
-  &:hover:not(#logo) {
+  &:hover:not(.logo) {
     background-color: $gris-claire;
   }
 

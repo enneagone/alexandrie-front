@@ -24,7 +24,12 @@ $violet-backgroud: #ddccff;
 }
 
 alx-layout-menu {
-  width: 20%;
+  .menu {
+    width: 20%;
+  }
+  .menu-info {
+    width: 40%;
+  }
   height: 100%; /* Full height */
   position: fixed; /* Make it stick, even on scroll */
   //background-color: $violet-backgroud;
