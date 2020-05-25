@@ -81,7 +81,6 @@ export class RegisterComponent implements OnInit {
     this.user.lastName = this.f.lastName.value;
     // @ts-ignore
     this.user.birthDate = new Date(today);
-    this.user.birthDate = today;
     this.user.country = this.f.country.value;
     this.user.city = this.f.city.value;
     this.user.email = this.f.email.value;
