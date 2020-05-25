@@ -160,15 +160,20 @@
                 'is-valid':
                   submitted &&
                   f.email.errors &&
-                  (f.email.touched || f.email.dirty)}"></e9-input>
+                  (f.email.touched || f.email.dirty)
+              }"
+            ></e9-input>
             <div
               *ngIf="
                 submitted &&
                 f.email.errors &&
                 (f.email.touched || f.email.dirty)
-              "class="invalid-feedback">
+              "
+              class="invalid-feedback"
+            >
               <div *ngIf="f.email.errors.required">Email is required</div>
               <div *ngIf="f.email.touched || f.email.dirty">
+                Email is not correct
               </div>
             </div>
           </div>

@@ -75,7 +75,6 @@ export class RegisterComponent implements OnInit {
       alert('Erreur ! Information menquante dans le formulaire');
       return;
     }
-
     const today = this.f.year.value + this.f.mounth.value + this.f.day.value;
     this.user.firstName = this.f.firstName.value;
     this.user.lastName = this.f.lastName.value;
