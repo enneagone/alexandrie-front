@@ -1,6 +1,38 @@
 ﻿<div class="jw-modal">
   <div class="jw-modal-body">
-    <ng-content></ng-content>
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+      <br />
+      <div>
+        <label for="name">
+          Name
+        </label>
+        <input id="name" type="text" formControlName="name" />
+      </div>
+      <br />
+      <div>
+        <label for="type">
+          type
+        </label>
+        <input id="type" type="text" formControlName="type" />
+      </div>
+      <br />
+      <div>
+        <label for="author">
+          Author
+        </label>
+        <input id="author" type="text" formControlName="author" />
+      </div>
+      <br />
+      <div>
+        <label for="description">
+          Description
+        </label>
+        <input id="description" type="text" formControlName="description" />
+      </div>
+      <br />
+      <button class="button" type="submit">Add</button>
+      <button type="button" class="btn" (click)="close()">Cancel</button>
+    </form>
   </div>
 </div>
 <div class="jw-modal-background"></div>

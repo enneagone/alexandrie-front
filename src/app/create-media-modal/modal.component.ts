@@ -6,7 +6,7 @@
   OnInit,
   OnDestroy,
 } from '@angular/core';
-
+import { FormBuilder } from '@angular/forms';
 import { ModalService } from './modal.service';
 
 @Component({
@@ -17,9 +17,20 @@ import { ModalService } from './modal.service';
 })
 export class ModalComponent implements OnInit, OnDestroy {
   @Input() id: string;
-  private element: any;
+  private readonly element: any;
+  checkoutForm: any;
 
-  constructor(private modalService: ModalService, private el: ElementRef) {
+  constructor(
+    private modalService: ModalService,
+    private el: ElementRef,
+    private formBuilder: FormBuilder,
+  ) {
+    this.checkoutForm = this.formBuilder.group({
+      name: '',
+      type: '',
+      author: '',
+      description: '',
+    });
     this.element = el.nativeElement;
   }
   ngOnInit(): void {
@@ -58,5 +69,11 @@ export class ModalComponent implements OnInit, OnDestroy {
   close(): void {
     this.element.style.display = 'none';
     document.body.classList.remove('jw-modal-open');
+    this.checkoutForm.reset();
+  }
+
+  onSubmit() {
+    this.checkoutForm.reset();
+    console.warn('Done');
   }
 }
