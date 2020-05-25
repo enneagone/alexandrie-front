@@ -95,7 +95,8 @@ export class RegisterComponent implements OnInit {
       this.f.year.value + '-' + this.f.mounth.value + '-' + this.f.day.value;
     this.user.firstName = this.f.firstName.value;
     this.user.lastName = this.f.lastName.value;
-    this.user.birthDate = today;
+    // @ts-ignore
+    this.user.birthDate = new Date(today);
     this.user.country = this.f.country.value;
     this.user.city = this.f.city.value;
     this.user.email = this.f.email.value;
