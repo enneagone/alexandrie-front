@@ -4,16 +4,16 @@
     <br />
     <label> You already have an account</label>
     <div class="form-group-Email">
-      <label>Email</label>
+      <label>Username</label>
       <br />
       <input
         type="text"
-        formControlName="email"
+        formControlName="username"
         class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
       />
-      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-        <div *ngIf="f.email.errors.required">Username is required</div>
+      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+        <div *ngIf="f.username.errors.required">Username is required</div>
       </div>
     </div>
     <div class="form-group-Password">

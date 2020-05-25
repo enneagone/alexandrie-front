@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { JwtService, UserService } from '../../core/services';
+import { UserService } from '../../core/services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // @ts-ignore
 import { SelectItem } from 'primeng/primeng';
 import { User } from '../../core/models';
-import { concatMap, map } from 'rxjs/operators';
 
 // tslint:disable-next-line:prettier
 @Component({
@@ -51,33 +50,6 @@ export class RegisterComponent implements OnInit {
   get f() {
     return this.loginForm.controls;
   }
-<<<<<<< HEAD
-
-  loginForm: FormGroup;
-  loading = false;
-  submitted = false;
-  error: string;
-  numbers: SelectItem[] = [];
-  // TODO creer un composant angular pour la selection dans date
-  mounths = [
-    'January',
-    'Febuary',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-  years: Array<Int32Array>[] = [];
-  currentDate = new Date();
-=======
->>>>>>> :construction: update register form
-
   ngOnInit(): void {
     this.numbers = new Array(32).fill(undefined, 1, undefined).map((x, i) => i);
     this.numbers.shift();
@@ -106,13 +78,6 @@ export class RegisterComponent implements OnInit {
     }
     this.loading = true;
 
-<<<<<<< HEAD
-    this.authenticationService.register(
-      this.f.username.value,
-      this.f.email.value,
-      this.f.password.value,
-    );
-=======
     const today =
       this.f.year.value + '-' + this.f.mounth.value + '-' + this.f.day.value;
     this.user.firstName = this.f.firstName.value;
@@ -127,14 +92,5 @@ export class RegisterComponent implements OnInit {
     this.user.password = this.f.password.value;
 
     this.authenticationService.register(this.user);
-    if (
-      this.authenticationService.isAuthenticated.pipe(map((isAuth) => isAuth))
-    ) {
-      this.router.navigateByUrl('/home');
-    } else {
-      alert('register failed');
-      this.loginForm.reset();
-    }
->>>>>>> :construction: update register form
   }
 }

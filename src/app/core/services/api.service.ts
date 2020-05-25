@@ -41,7 +41,9 @@ export class ApiService {
   // tslint:disable-next-line:ban-types
   postWithRegister(path: string, body: any): Observable<any> {
     return this.http
-      .post(`${environment.api_url}${path}`, JSON.stringify(body))
+      .post(`${environment.api_url}${path}`, JSON.stringify(body), {
+        responseType: 'text',
+      })
       .pipe(catchError(ApiService.formatErrors));
   }
 
