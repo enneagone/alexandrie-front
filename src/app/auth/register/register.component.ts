@@ -20,20 +20,7 @@ export class RegisterComponent implements OnInit {
   error: string;
   numbers: SelectItem[] = [];
   // TODO creer un composant angular pour la selection dans date
-  mounths: Array<string> = [
-    '01',
-    '02',
-    '03',
-    '04',
-    '05',
-    '06',
-    '07',
-    '08',
-    '09',
-    '10',
-    '11',
-    '12',
-  ];
+  mounths: SelectItem[] = [];
   years: Array<Int32Array>[] = [];
   currentDate = new Date();
   user: User = new (class implements User {
@@ -68,6 +55,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.numbers = new Array(32).fill(undefined, 1, undefined).map((x, i) => i);
     this.numbers.shift();
+    this.mounths = new Array(12).fill(undefined, 1, undefined).map((x, i) => i);
+    this.mounths.shift();
     this.loginForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
