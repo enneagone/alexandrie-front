@@ -7,12 +7,12 @@
           <div class="form-group-name">
             <label>First Name</label>
             <br />
-            <e9-input
+            <input
               type="text"
               formControlName="firstName"
               class="form-control"
               [ngClass]="{ 'is-valid': submitted && f.firstName.errors }"
-            ></e9-input>
+            />
             <div
               *ngIf="submitted && f.firstName.errors"
               class="invalid-feedback"
@@ -27,12 +27,12 @@
           <div class="form-group-name">
             <label>Last Name</label>
             <br />
-            <e9-input
+            <input
               type="text"
               formControlName="lastName"
               class="form-control"
               [ngClass]="{ 'is-valid': submitted && f.lastName.errors }"
-            ></e9-input>
+            />
             <div
               *ngIf="submitted && f.lastName.errors"
               class="invalid-feedback"
@@ -47,12 +47,12 @@
           <div class="form-group-username">
             <label>Username</label>
             <br />
-            <e9-input
+            <input
               type="text"
               formControlName="username"
               class="form-control"
               [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
-            ></e9-input>
+            />
             <div
               *ngIf="submitted && f.username.errors"
               class="invalid-feedback"
@@ -67,12 +67,12 @@
           <div class="form-group-country">
             <label>Country</label>
             <br />
-            <e9-input
+            <input
               type="text"
               formControlName="country"
               class="form-control"
               [ngClass]="{ 'is-valid': submitted && f.country.errors }"
-            ></e9-input>
+            />
             <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
               <div *ngIf="f.country.errors.required">country is required</div>
             </div>
@@ -82,12 +82,12 @@
           <div class="form-group-city">
             <label>City</label>
             <br />
-            <e9-input
+            <input
               type="text"
               formControlName="city"
               class="form-control"
               [ngClass]="{ 'is-valid': submitted && f.city.errors }"
-            ></e9-input>
+            />
             <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
               <div *ngIf="f.city.errors.required">city is required</div>
             </div>
@@ -120,8 +120,8 @@
               class="form-control"
               [ngClass]="{ 'is-valid:': submitted && f.mounth.errors }"
             >
-              <option [value]="mounth" *ngFor="let mounth of mounths">
-                {{ mounth }}</option
+              <option [value]="mounth.value" *ngFor="let mounth of mounths">
+                {{ mounth.text }}</option
               >
             </select>
             <div *ngIf="submitted && f.mounth.errors" class="invalid-feedback">
@@ -151,7 +151,7 @@
           <div class="form-group-email">
             <label>Email</label>
             <br />
-            <e9-input
+            <input
               type="email"
               formControlName="email"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
@@ -162,7 +162,7 @@
                   f.email.errors &&
                   (f.email.touched || f.email.dirty)
               }"
-            ></e9-input>
+            />
             <div
               *ngIf="
                 submitted &&
@@ -182,12 +182,12 @@
           <div class="form-group-password">
             <label>Password</label>
             <br />
-            <e9-input
+            <input
               type="password"
               formControlName="password"
               class="form-control"
               [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-            ></e9-input>
+            />
             <div
               *ngIf="submitted && f.password.errors"
               class="invalid-feedback"
@@ -199,9 +199,9 @@
       </tr>
       <tr>
         <div class="form-group-button">
-          <e9-button [disabled]="false" class="btn btn-primary">
+          <button [disabled]="false" class="btn btn-primary">
             Register
-          </e9-button>
+          </button>
         </div>
       </tr>
     </div>

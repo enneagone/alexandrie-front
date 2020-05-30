@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../core/services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 // @ts-ignore
 import { SelectItem } from 'primeng/primeng';
 import { User } from '../../core/models';
@@ -18,7 +19,20 @@ export class RegisterComponent implements OnInit {
   error: string;
   numbers: SelectItem[] = [];
   // TODO creer un composant angular pour la selection dans date
-  mounths: SelectItem[] = [];
+  mounths = [
+    { value: 1, text: 'Janvier' },
+    { value: 2, text: 'Février' },
+    { value: 3, text: 'Mars' },
+    { value: 4, text: 'Avril' },
+    { value: 5, text: 'Mai' },
+    { value: 6, text: 'Juin' },
+    { value: 7, text: 'Juillet' },
+    { value: 8, text: 'Août' },
+    { value: 9, text: 'Septembre' },
+    { value: 10, text: 'Octobre' },
+    { value: 11, text: 'Novembre' },
+    { value: 12, text: 'Décembre' },
+  ];
   years: Array<Int32Array>[] = [];
   currentDate = new Date();
   user: User = new (class implements User {
@@ -34,6 +48,7 @@ export class RegisterComponent implements OnInit {
   })();
 
   constructor(
+    private datePipe: DatePipe,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -52,8 +67,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.numbers = new Array(32).fill(undefined, 1, undefined).map((x, i) => i);
     this.numbers.shift();
-    this.mounths = new Array(12).fill(undefined, 1, undefined).map((x, i) => i);
-    this.mounths.shift();
     this.loginForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -75,11 +88,12 @@ export class RegisterComponent implements OnInit {
       alert('Erreur ! Information menquante dans le formulaire');
       return;
     }
-    const today = this.f.year.value + this.f.mounth.value + this.f.day.value;
+    const today =
+      this.f.year.value + '-' + this.f.mounth.value + '-' + this.f.day.value;
     this.user.firstName = this.f.firstName.value;
     this.user.lastName = this.f.lastName.value;
     // @ts-ignore
-    this.user.birthDate = new Date(today);
+    this.user.birthDate = this.datePipe.transform(today, 'yyyy-MM-dd');
     this.user.country = this.f.country.value;
     this.user.city = this.f.city.value;
     this.user.email = this.f.email.value;
