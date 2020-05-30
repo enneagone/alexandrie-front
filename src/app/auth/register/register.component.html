@@ -5,16 +5,41 @@
       <tr>
         <td>
           <div class="form-group-name">
-            <label>Name</label>
+            <label>First Name</label>
             <br />
             <input
               type="text"
-              formControlName="email"
+              formControlName="firstName"
               class="form-control"
-              [ngClass]="{ 'is-valid': submitted && f.email.errors }"
+              [ngClass]="{ 'is-valid': submitted && f.firstName.errors }"
             />
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-              <div *ngIf="f.email.errors.required">Name is required</div>
+            <div
+              *ngIf="submitted && f.firstName.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.firstName.errors.required">
+                First name is required
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="form-group-name">
+            <label>Last Name</label>
+            <br />
+            <input
+              type="text"
+              formControlName="lastName"
+              class="form-control"
+              [ngClass]="{ 'is-valid': submitted && f.lastName.errors }"
+            />
+            <div
+              *ngIf="submitted && f.lastName.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.lastName.errors.required">
+                Last name is required
+              </div>
             </div>
           </div>
         </td>
@@ -95,8 +120,8 @@
               class="form-control"
               [ngClass]="{ 'is-valid:': submitted && f.mounth.errors }"
             >
-              <option [value]="mounth" *ngFor="let mounth of mounths">
-                {{ mounth }}</option
+              <option [value]="mounth.value" *ngFor="let mounth of mounths">
+                {{ mounth.text }}</option
               >
             </select>
             <div *ngIf="submitted && f.mounth.errors" class="invalid-feedback">
@@ -127,13 +152,29 @@
             <label>Email</label>
             <br />
             <input
-              type="text"
+              type="email"
               formControlName="email"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
               class="form-control"
-              [ngClass]="{ 'is-valid': submitted && f.email.errors }"
+              [ngClass]="{
+                'is-valid':
+                  submitted &&
+                  f.email.errors &&
+                  (f.email.touched || f.email.dirty)
+              }"
             />
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div
+              *ngIf="
+                submitted &&
+                f.email.errors &&
+                (f.email.touched || f.email.dirty)
+              "
+              class="invalid-feedback"
+            >
               <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.touched || f.email.dirty">
+                Email is not correct
+              </div>
             </div>
           </div>
         </td>
@@ -158,11 +199,7 @@
       </tr>
       <tr>
         <div class="form-group-button">
-          <button [disabled]="loading" class="btn btn-primary">
-            <span
-              *ngIf="loading"
-              class="spinner-border spinner-border-sm mr-1"
-            ></span>
+          <button [disabled]="false" class="btn btn-primary">
             Register
           </button>
         </div>

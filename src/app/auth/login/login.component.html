@@ -4,16 +4,16 @@
     <br />
     <label> You already have an account</label>
     <div class="form-group-Email">
-      <label>Email</label>
+      <label>Username</label>
       <br />
       <input
         type="text"
-        formControlName="email"
+        formControlName="username"
         class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
       />
-      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-        <div *ngIf="f.email.errors.required">Username is required</div>
+      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+        <div *ngIf="f.username.errors.required">Username is required</div>
       </div>
     </div>
     <div class="form-group-Password">
@@ -30,17 +30,15 @@
       </div>
     </div>
     <div class="form-group-button">
-      <button [disabled]="loading" class="btn btn-primary">
+      <!-- Ex using e9 btn-->
+      <e9-button [disabled]="loading" value="Sign in">
         <span
           *ngIf="loading"
           class="spinner-border spinner-border-sm mr-1"
         ></span>
         Log in
-      </button>
+      </e9-button>
     </div>
-    <a routerLink="/forgottenPassword" class="btn btn-link"
-      >Forgotten Password ?</a
-    >
     <br />
     <a routerLink="/register" class="btn btn-link">Register ?</a>
   </div>

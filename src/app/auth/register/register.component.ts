@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../core/services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 // @ts-ignore
 import { SelectItem } from 'primeng/primeng';
 import { User } from '../../core/models';
-import { map } from 'rxjs/operators';
 
 // tslint:disable-next-line:prettier
 @Component({
@@ -14,7 +14,41 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+  loginForm: FormGroup;
+  submitted = false;
+  error: string;
+  numbers: SelectItem[] = [];
+  // TODO creer un composant angular pour la selection dans date
+  mounths = [
+    { value: 1, text: 'Janvier' },
+    { value: 2, text: 'Février' },
+    { value: 3, text: 'Mars' },
+    { value: 4, text: 'Avril' },
+    { value: 5, text: 'Mai' },
+    { value: 6, text: 'Juin' },
+    { value: 7, text: 'Juillet' },
+    { value: 8, text: 'Août' },
+    { value: 9, text: 'Septembre' },
+    { value: 10, text: 'Octobre' },
+    { value: 11, text: 'Novembre' },
+    { value: 12, text: 'Décembre' },
+  ];
+  years: Array<Int32Array>[] = [];
+  currentDate = new Date();
+  user: User = new (class implements User {
+    firstName: string;
+    lastName: string;
+    picture: string;
+    birthDate: string;
+    city: string;
+    country: string;
+    email: string;
+    password: string;
+    username: string;
+  })();
+
   constructor(
+    private datePipe: DatePipe,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -30,34 +64,12 @@ export class RegisterComponent implements OnInit {
   get f() {
     return this.loginForm.controls;
   }
-  loginForm: FormGroup;
-  loading = false;
-  submitted = false;
-  error: string;
-  numbers: SelectItem[] = [];
-  // TODO creer un composant angular pour la selection dans date
-  mounths = [
-    'January',
-    'Febuary',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-  years: Array<Int32Array>[] = [];
-  currentDate = new Date();
-
   ngOnInit(): void {
-    this.numbers = new Array(31)
-      .fill(undefined, undefined, undefined)
-      .map((x, i) => i);
+    this.numbers = new Array(32).fill(undefined, 1, undefined).map((x, i) => i);
+    this.numbers.shift();
     this.loginForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required],
       email: ['', Validators.required],
@@ -76,20 +88,19 @@ export class RegisterComponent implements OnInit {
       alert('Erreur ! Information menquante dans le formulaire');
       return;
     }
-    this.loading = true;
+    const today =
+      this.f.year.value + '-' + this.f.mounth.value + '-' + this.f.day.value;
+    this.user.firstName = this.f.firstName.value;
+    this.user.lastName = this.f.lastName.value;
+    // @ts-ignore
+    this.user.birthDate = this.datePipe.transform(today, 'yyyy-MM-dd');
+    this.user.country = this.f.country.value;
+    this.user.city = this.f.city.value;
+    this.user.email = this.f.email.value;
+    this.user.picture = 'none';
+    this.user.username = this.f.username.value;
+    this.user.password = this.f.password.value;
 
-    this.authenticationService.register(
-      this.f.username.value,
-      this.f.email.value,
-      this.f.password.value,
-    );
-    if (
-      this.authenticationService.isAuthenticated.pipe(map((isAuth) => isAuth))
-    ) {
-      this.router.navigateByUrl('/home');
-    } else {
-      alert('register failed');
-      this.loginForm.reset();
-    }
+    this.authenticationService.register(this.user);
   }
 }

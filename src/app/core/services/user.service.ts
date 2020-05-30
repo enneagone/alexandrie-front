@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ReplaySubject } from 'rxjs';
+import { Router } from '@angular/router';
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { User } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
-  public isAuthenticated = this.isAuthenticatedSubject.asObservable();
+  private currentUserSubject: BehaviorSubject<boolean>;
+  public currentUser: Observable<boolean>;
 
   /*
    * maintenant l'adresse est dans le fichier proxy.config.js
@@ -16,11 +18,24 @@ export class UserService {
    * et il faut demarrer avec ng serve --proxy-config src/proxy.config.json
    * cf, ou j'ai trouvé la soluce : https://stackoverflow.com/questions/60169694/java-rest-call-get-url-neterr-failed
    */
+
   constructor(
     private apiService: ApiService,
     private http: HttpClient,
+    private router: Router,
     private jwtService: JwtService,
-  ) {}
+  ) {
+    this.currentUserSubject = new BehaviorSubject<boolean>(
+      // @ts-ignore
+      localStorage.getItem('jwtToken'),
+    );
+    this.currentUser = this.currentUserSubject.asObservable();
+  }
+
+  public get currentUserValue(): boolean {
+    return this.currentUserSubject.value;
+  }
+
   userKnown() {
     if (this.jwtService.getToken()) {
       this.apiService.get('/users/current').subscribe(
@@ -36,18 +51,20 @@ export class UserService {
 
   setAuth(token: string) {
     this.jwtService.saveToken(token);
-    this.isAuthenticatedSubject.next(true);
+    this.currentUserSubject.next(true);
+    this.router.navigate(['/home']);
   }
 
   purgeAuth() {
     // Remove JWT from localstorage
+    this.currentUserSubject.next(false);
     this.jwtService.destroyToken();
-    this.isAuthenticatedSubject.next(false);
+    this.router.navigate(['/login']);
   }
 
-  login(email: string, password: string) {
+  login(username: string, password: string) {
     const parameters = new HttpParams({
-      fromString: 'username=' + email + '&password=' + password,
+      fromString: 'username=' + username + '&password=' + password,
     });
 
     return this.apiService.post('/public/users/login', parameters).subscribe(
@@ -58,17 +75,14 @@ export class UserService {
     );
   }
 
-  register(username: string, email: string, password: string) {
-    const parameters = new HttpParams({
-      fromString:
-        'username=' + username + '&email=' + email + '&password=' + password,
-    });
-
-    return this.apiService.post('/public/users/register', parameters).subscribe(
-      (data) => {
-        this.setAuth(data.toString());
-      },
-      (error) => this.purgeAuth,
-    );
+  register(user: User) {
+    return this.apiService
+      .postWithRegister('/public/users/register', user)
+      .subscribe(
+        (data) => {
+          this.setAuth(data.toString());
+        },
+        (error) => this.purgeAuth,
+      );
   }
 }

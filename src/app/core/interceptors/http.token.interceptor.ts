@@ -18,14 +18,14 @@ export class HttpTokenInterceptor implements HttpInterceptor {
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     const headersConfig = {
-      'Content-Type': 'text/plain;charset=UTF-8',
+      'Content-Type': 'application/json',
     };
 
     const token = this.jwtService.getToken();
 
     if (token) {
       // @ts-ignore
-      headersConfig.Authorization = `Token ${token}`;
+      headersConfig.Authorization = `Bearer ${token}`;
     }
 
     const request = req.clone({ setHeaders: headersConfig });

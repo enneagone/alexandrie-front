@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
+  CanActivate,
   Resolve,
   Router,
   RouterStateSnapshot,
@@ -9,10 +10,11 @@ import {
 import { JwtService } from '../core';
 
 @Injectable()
-export class HomeAuthResolver implements Resolve<boolean> {
+export class HomeAuthResolver implements CanActivate {
   constructor(private router: Router, private jwtService: JwtService) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  // @ts-ignore
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.jwtService.getToken()) {
       return true;
     } else {

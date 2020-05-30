@@ -4,13 +4,14 @@ import { RegisterComponent } from './register';
 import { LoginComponent } from './login';
 import { NoAuthGuard } from './no-auth-guard.service';
 import { AuthRoutingModule } from './auth-routing.module';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
-  imports: [AuthRoutingModule, CommonModule, ReactiveFormsModule],
+  imports: [AuthRoutingModule, ReactiveFormsModule, SharedModule],
   declarations: [RegisterComponent, LoginComponent],
-  providers: [NoAuthGuard],
+  providers: [NoAuthGuard, DatePipe],
   exports: [LoginComponent],
 })
 export class AuthModule {}
