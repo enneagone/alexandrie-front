@@ -3794,6 +3794,13 @@ enhanced-resolve@4.1.1, enhanced-resolve@^4.1.0:
     memory-fs "^0.5.0"
     tapable "^1.0.0"
 
+enneagone-angular-ds@^1.5.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/enneagone-angular-ds/-/enneagone-angular-ds-1.6.0.tgz#fc2cecfdd93b75de303734f8be4250b80860af79"
+  integrity sha512-7c6iXxdw1FD5Tq+8kOg9UEIW4eWO5peOPvuEyK+1FdF9V6r3wfp8xSkmMbisBlAr+yAm+HMFrH3B6MQzDnxjrg==
+  dependencies:
+    tslib "^1.10.0"
+
 ent@~2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/ent/-/ent-2.2.0.tgz#e964219325a21d05f44466a2f686ed6ce5f5dd1d"
