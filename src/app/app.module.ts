@@ -9,6 +9,7 @@ import { CoreModule } from './core';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeModule } from './home/home.module';
+import { ProfileModule } from './profile/profile.module';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LayoutModule } from './layout/layout.module';
@@ -28,6 +29,7 @@ import { SharedModule } from './shared/shared.module';
     FontAwesomeModule,
     LayoutModule,
     SharedModule,
+    ProfileModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

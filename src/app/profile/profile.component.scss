@@ -1,0 +1,38 @@
+#profile_container {
+  padding: 0.01em 16px;
+  margin-left: 30%;
+  text-align: center !important;
+  display: flex;
+}
+
+#profile_view {
+  background-color: #7c72a0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  font-size: 1em;
+  transition: 0.3s;
+  border-radius: 5px;
+  width: 35%;
+  margin-left: 5em;
+  margin-top: 10em;
+}
+
+#profile_view img {
+  vertical-align: middle;
+  width: 50%;
+  margin: 1em;
+  border-radius: 50%;
+}
+
+#profile_form {
+  width: 65%;
+  align-self: center;
+}
+
+#list {
+  text-align: left;
+  display: inline-block;
+}
+
+#list li span {
+  padding-right: 0.5em;
+}
