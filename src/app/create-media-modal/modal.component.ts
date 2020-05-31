@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from './modal.service';
 
 @Component({
-  selector: 'jw-modal',
+  selector: 'alx, jw-modal',
   templateUrl: 'modal.component.html',
   styleUrls: ['modal.component.scss'],
   encapsulation: ViewEncapsulation.None,
