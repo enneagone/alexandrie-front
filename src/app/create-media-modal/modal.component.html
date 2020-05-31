@@ -1,6 +1,6 @@
 ﻿<div class="jw-modal">
   <div class="jw-modal-body">
-    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="addMediaForm" (ngSubmit)="onSubmit()">
       <br />
       <div>
         <label for="name">
@@ -27,7 +27,8 @@
         <label for="description">
           Description
         </label>
-        <input id="description" type="text" formControlName="description" />
+        <textarea id="description" type="text" formControlName="description">
+        </textarea>
       </div>
       <br />
       <button class="button" type="submit">Add</button>

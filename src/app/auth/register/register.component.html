@@ -13,9 +13,10 @@
               class="form-control"
               [ngClass]="{ 'is-valid': submitted && f.email.errors }"
             />
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-              <div *ngIf="f.email.errors.required">Name is required</div>
-            </div>
+            <div
+              *ngIf="submitted && f.email.errors"
+              class="invalid-feedback"
+            ></div>
           </div>
         </td>
         <td>
