@@ -79,5 +79,6 @@ export class ModalComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.addMediaForm.reset();
     console.warn('Done');
+    this.close();
   }
 }
