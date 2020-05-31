@@ -1,3 +1,29 @@
-<h2>{{ profile.username | uppercase }} Details</h2>
-<div><span>id: </span>{{ profile.id }}</div>
-<div><span>email: </span>{{ profile.email }}</div>
+<div id="profile_container" *ngIf="profile">
+  <div id="profile_view">
+    <div id="picture">
+      <img src="assets/default-profile.png" alt="Avatar" />
+    </div>
+    <div id="container">
+      <div id="list">
+        <ul class="fa-ul">
+          <li>
+            <span><fa-icon icon="user-circle"></fa-icon></span
+            >{{ profile.firstName }} {{ profile.lastName | uppercase }}
+          </li>
+          <li>
+            <span><fa-icon icon="birthday-cake"></fa-icon></span
+            >{{ profile.birthDate }}
+          </li>
+          <li>
+            <span><fa-icon icon="map-marker-alt"></fa-icon></span>
+            {{ profile.city }}, {{ profile.country | uppercase }}
+          </li>
+          <li>
+            <span><fa-icon icon="envelope"></fa-icon></span>{{ profile.email }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="profile_form"></div>
+</div>

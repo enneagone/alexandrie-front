@@ -9,13 +9,14 @@ import { NotifyService } from 'enneagone-angular-ds';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private currentUserSubject: BehaviorSubject<boolean>;
-  public currentUser: Observable<boolean>;
+  private currentTokenSubject: BehaviorSubject<boolean>;
+  public currentToken: Observable<boolean>;
   messageRegisterFailed = 'Register successful';
   messageUserExist = 'User already exist';
   messageSuccess = 'Register successful';
   messageLoginFailed = 'Login failed';
   messageLoginSuccess = 'Login success';
+
   /*
    * maintenant l'adresse est dans le fichier proxy.config.js
    * pour l'une des probleme, il y avait un probleme entre http et httpS
@@ -31,39 +32,30 @@ export class UserService {
     private jwtService: JwtService,
     private notifier: NotifyService,
   ) {
-    this.currentUserSubject = new BehaviorSubject<boolean>(
+    this.currentTokenSubject = new BehaviorSubject<boolean>(
       // @ts-ignore
       localStorage.getItem('jwtToken'),
     );
-    this.currentUser = this.currentUserSubject.asObservable();
+    this.currentToken = this.currentTokenSubject.asObservable();
   }
 
   public get currentUserValue(): boolean {
-    return this.currentUserSubject.value;
+    return this.currentTokenSubject.value;
   }
 
-  userKnown() {
-    if (this.jwtService.getToken()) {
-      this.apiService.get('/users/current').subscribe(
-        (data) => {
-          this.setAuth(data);
-        },
-        (err) => this.purgeAuth,
-      );
-    } else {
-      this.purgeAuth();
-    }
+  getUser() {
+    return this.apiService.get('/users/current');
   }
 
   setAuth(token: string) {
     this.jwtService.saveToken(token);
-    this.currentUserSubject.next(true);
+    this.currentTokenSubject.next(true);
     this.router.navigate(['/home']);
   }
 
   purgeAuth() {
     // Remove JWT from localstorage
-    this.currentUserSubject.next(false);
+    this.currentTokenSubject.next(false);
     this.jwtService.destroyToken();
     this.router.navigate(['/login']);
   }
