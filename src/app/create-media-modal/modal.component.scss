@@ -7,10 +7,10 @@ jw-modal {
   .jw-modal {
     /* modal container fixed across whole screen */
     position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    top: 0px;
+    right: 300px;
+    bottom: 0px;
+    left: 300px;
 
     /* z-index must be higher than .jw-modal-background */
     z-index: 1000;
@@ -19,7 +19,7 @@ jw-modal {
     overflow: auto;
 
     .jw-modal-body {
-      padding: 20px;
+      padding: 50px;
       background: #fff;
 
       /* margin exposes part of the modal background */
@@ -47,4 +47,70 @@ jw-modal {
 body.jw-modal-open {
   /* body overflow is hidden to hide main scrollbar when modal window is open */
   overflow: hidden;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0px;
+}
+
+input[type='text'] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 6px 0px 16px;
+  resize: vertical;
+}
+
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 6px 0px 16px;
+  width: vertical - 0px;
+  height: 120px;
+}
+
+label {
+  margin-right: 0px;
+  margin-left: 0px;
+  width: 100%;
+  font-family: 'Open Sans';
+  font-weight: bold;
+  font-size: 15px;
+}
+
+button[type='submit'] {
+  background-color: #7fdd6f;
+  color: white;
+  padding: 20px 80px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #7fdd6f;
+}
+
+button[type='cancel'] {
+  background-color: #ffffff;
+  color: #dd6f6f;
+  padding: 20px 80px;
+  border: 1px solid #dd6f6f;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 50px;
+}
+
+.container {
+  /* Ajouter box-sizing */
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
 }
