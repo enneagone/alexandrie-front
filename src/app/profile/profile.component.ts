@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   getProfile() {
     this.userService.getUser().subscribe(
       (user: User) => {
-        let date = this.parseDateTime(user.birthDate);
+        const date = this.parseDateTime(user.birthDate);
         this.profile = { ...user, birthDate: date };
       },
       (error: Error) => {
