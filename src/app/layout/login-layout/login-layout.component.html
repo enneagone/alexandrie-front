@@ -1,0 +1,12 @@
+<div class="layout">
+  <div class="split left">
+    <img src="assets/Logo.png" alt="Logo Alexandrie" />
+    <span [routerLink]="['/register']" routerLinkActive="active">
+      Register
+    </span>
+    <span [routerLink]="['/login']" routerLinkActive="active"> Login </span>
+  </div>
+  <div class="split right">
+    <router-outlet></router-outlet>
+  </div>
+</div>

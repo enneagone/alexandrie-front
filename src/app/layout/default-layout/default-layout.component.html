@@ -1,0 +1,25 @@
+<div class="menu">
+  <div class="split nav-bar">
+    <a class="logo" [routerLink]="['/home']">
+      <img src="assets/Logo.png" alt="Alexandrie logo" />
+    </a>
+    <div class="item-menu">
+      <ul>
+        <li>
+          <a [routerLink]="['/home']" routerLinkActive="active"
+            ><fa-icon [icon]="Home"></fa-icon> Home</a
+          >
+        </li>
+        <li>
+          <a href="#"><fa-icon [icon]="User"></fa-icon>My Account</a>
+        </li>
+        <li>
+          <a href="#"><fa-icon [icon]="Media"></fa-icon>My Collection</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="split content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

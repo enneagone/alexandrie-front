@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../core/services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { NotifyService } from 'enneagone-angular-ds';
 // @ts-ignore
 import { SelectItem } from 'primeng/primeng';
 import { User } from '../../core/models';
@@ -14,6 +15,7 @@ import { User } from '../../core/models';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+  messageFailed = 'Invalid field';
   loginForm: FormGroup;
   submitted = false;
   error: string;
@@ -53,6 +55,7 @@ export class RegisterComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: UserService,
+    private notifier: NotifyService,
   ) {
     // TODO creer un composant angular pour la selection dans date
     for (let i = 0; i < 40; ++i) {
@@ -83,24 +86,28 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
+    this.user.picture = 'none';
+    this.f.firstName.setValue(this.user.firstName);
+    this.f.lastName.setValue(this.user.lastName);
+    this.f.country.setValue(this.user.country);
+    this.f.city.setValue(this.user.city);
+    this.f.email.setValue(this.user.email);
+    this.f.username.setValue(this.user.username);
+    this.f.password.setValue(this.user.password);
     if (this.loginForm.invalid) {
-      alert('Erreur ! Information menquante dans le formulaire');
+      this.notifier.notify(this.messageFailed, 2);
       return;
     }
-    const today =
+    const birthDate =
       this.f.year.value + '-' + this.f.mounth.value + '-' + this.f.day.value;
-    this.user.firstName = this.f.firstName.value;
-    this.user.lastName = this.f.lastName.value;
-    // @ts-ignore
-    this.user.birthDate = this.datePipe.transform(today, 'yyyy-MM-dd');
-    this.user.country = this.f.country.value;
-    this.user.city = this.f.city.value;
-    this.user.email = this.f.email.value;
-    this.user.picture = 'none';
-    this.user.username = this.f.username.value;
-    this.user.password = this.f.password.value;
-
+    this.user.birthDate = this.datePipe.transform(
+      birthDate,
+      'yyyy-MM-dd',
+    ) as string;
     this.authenticationService.register(this.user);
+  }
+
+  goToLogin() {
+    this.router.navigate(['/login']);
   }
 }

@@ -10,11 +10,12 @@ import { CoreModule } from './core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeModule } from './home/home.module';
 
-import { MenuComponent } from './shared';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LayoutModule } from './layout/layout.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent, MenuComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AuthModule,
@@ -25,6 +26,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CoreModule,
     FormsModule,
     FontAwesomeModule,
+    LayoutModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

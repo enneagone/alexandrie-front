@@ -2,12 +2,19 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { HomeAuthResolver } from './home-auth-resolver.service';
+import { DefaultLayoutComponent } from '../layout/default-layout/default-layout.component';
 
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent,
-    canActivate: [HomeAuthResolver],
+    component: DefaultLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: HomeComponent,
+        canActivate: [HomeAuthResolver],
+      },
+    ],
   },
 ];
 
