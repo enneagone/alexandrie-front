@@ -1,0 +1,46 @@
+$violet: #cc99ff;
+$gris-claire: rgba(124, 114, 160, 0.1);
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+}
+
+.left {
+  padding-top: 50px;
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+span {
+  position: absolute;
+  width: 150%;
+  left: 5%;
+
+  top: 75%;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 270px;
+  line-height: 316px;
+  letter-spacing: -0.05em;
+
+  color: rgba(124, 114, 160, 0.2);
+  display: none;
+  &.active {
+    display: block;
+  }
+}

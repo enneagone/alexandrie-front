@@ -4,30 +4,27 @@ $gris-claire: rgba(124, 114, 160, 0.1);
 .menu {
   img {
     padding: 5% 2% 5% 5%;
-    width: 40%;
+    width: 90%;
   }
 }
 
-span {
-  position: absolute;
-  width: 150%;
-  left: 5%;
-
-  top: 80%;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 270px;
-  line-height: 316px;
-  letter-spacing: -0.05em;
-
-  color: rgba(124, 114, 160, 0.2);
-  display: none;
-  &.active {
-    display: block;
-  }
+.split {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
 }
+
+.nav-bar {
+  width: 20%;
+  left: 0;
+}
+
+.content {
+  width: 80%;
+  right: 0;
+}
+
 .item-menu {
   margin-top: 5%;
 }

@@ -11,19 +11,15 @@ import {
 
 @Component({
   selector: 'alx-layout-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss'],
+  templateUrl: './default-layout.component.html',
+  styleUrls: ['./default-layout.component.scss'],
 })
-export class MenuComponent {
-  constructor(private jwtService: JwtService) {}
+export class DefaultLayoutComponent {
+  constructor() {}
 
   Home = faHome;
   User = faUserAlt;
   Media = faPhotoVideo;
   SignInAlt = faSignInAlt;
   Info = faInfoCircle;
-
-  isUserActive() {
-    return this.jwtService.getToken() != null;
-  }
 }

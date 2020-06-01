@@ -1,45 +1,61 @@
 <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="form-group-Login">
-    <br />
-    <label> You already have an account</label>
+    <div class="header-form">
+      <e9-button
+        value="Log in"
+        size="xl"
+        width="150px"
+        class="button-left"
+      ></e9-button>
+      <e9-button
+        value="Sign in"
+        size="xl"
+        width="150px"
+        class="button-right"
+        [outlined]="true"
+        (btnClick)="goToRegister()"
+      ></e9-button>
+      <div class="text-center">
+        <p>You already have an account</p>
+      </div>
+    </div>
     <div class="form-group-Email">
-      <label>Username</label>
-      <br />
-      <input
+      <e9-input
         type="text"
-        formControlName="username"
+        label="Username"
         class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
-      />
+        labelColor="#7C72A0"
+        color="#7C72A0"
+        [value]="username"
+        (ngValueChange)="username = $event"
+      ></e9-input>
       <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
         <div *ngIf="f.username.errors.required">Username is required</div>
       </div>
     </div>
     <div class="form-group-Password">
-      <label>Password</label>
-      <br />
-      <input
+      <e9-input
+        [value]="password"
+        (ngValueChange)="password = $event"
         type="password"
-        formControlName="password"
+        label="Password"
         class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-      />
+        color="#7C72A0"
+        labelColor="#7C72A0"
+      ></e9-input>
       <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
         <div *ngIf="f.password.errors.required">Password is required</div>
       </div>
     </div>
     <div class="form-group-button">
-      <!-- Ex using e9 btn-->
-      <e9-button [disabled]="loading" value="Sign in">
-        <span
-          *ngIf="loading"
-          class="spinner-border spinner-border-sm mr-1"
-        ></span>
-        Log in
-      </e9-button>
+      <e9-button
+        [disabled]="loading"
+        value="Log in"
+        color="#7FDD6F"
+        size="xl"
+        width="150px"
+      ></e9-button>
     </div>
-    <br />
-    <a routerLink="/register" class="btn btn-link">Register ?</a>
   </div>
 </form>

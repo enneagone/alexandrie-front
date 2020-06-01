@@ -5,12 +5,17 @@ import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models';
+import { NotifyService } from 'enneagone-angular-ds';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private currentUserSubject: BehaviorSubject<boolean>;
   public currentUser: Observable<boolean>;
-
+  messageRegisterFailed = 'Register successful';
+  messageUserExist = 'User already exist';
+  messageSuccess = 'Register successful';
+  messageLoginFailed = 'Login failed';
+  messageLoginSuccess = 'Login success';
   /*
    * maintenant l'adresse est dans le fichier proxy.config.js
    * pour l'une des probleme, il y avait un probleme entre http et httpS
@@ -24,6 +29,7 @@ export class UserService {
     private http: HttpClient,
     private router: Router,
     private jwtService: JwtService,
+    private notifier: NotifyService,
   ) {
     this.currentUserSubject = new BehaviorSubject<boolean>(
       // @ts-ignore
@@ -70,8 +76,12 @@ export class UserService {
     return this.apiService.post('/public/users/login', parameters).subscribe(
       (data) => {
         this.setAuth(data);
+        this.notifier.notify(this.messageLoginSuccess, 1);
       },
-      (err) => this.purgeAuth,
+      (err) => {
+        this.purgeAuth();
+        this.notifier.notify(this.messageLoginFailed, 2);
+      },
     );
   }
 
@@ -81,8 +91,16 @@ export class UserService {
       .subscribe(
         (data) => {
           this.setAuth(data.toString());
+          this.notifier.notify(this.messageSuccess, 1);
         },
-        (error) => this.purgeAuth,
+        (error) => {
+          this.purgeAuth();
+          if (error.status === 403) {
+            this.notifier.notify(this.messageUserExist, 2);
+          } else {
+            this.notifier.notify(this.messageRegisterFailed, 2);
+          }
+        },
       );
   }
 }

@@ -1,13 +1,31 @@
 .form-group-Email {
-  margin: 20px;
+  margin: 5px;
 }
 
 .form-group-button {
-  margin: 20px;
+  margin: 30px;
 }
 
 .form-group-Login {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 20%;
+}
+
+.button-left {
+  margin-right: 5px;
+}
+
+.button-right {
+  margin-left: 5px;
+}
+
+.text-center {
+  text-align: center;
+  color: #7c72a0;
+}
+
+.invalid-feedback {
+  color: #d2172c;
 }
