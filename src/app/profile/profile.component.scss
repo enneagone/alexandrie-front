@@ -1,17 +1,16 @@
 #profile_container {
-  padding: 0.01em 16px;
-  margin-left: 30%;
-  text-align: center !important;
+  padding: 1em;
   display: flex;
 }
 
 #profile_view {
   background-color: #7c72a0;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  text-align: center !important;
   font-size: 1em;
   transition: 0.3s;
   border-radius: 5px;
-  width: 35%;
+  width: 25%;
   margin-left: 5em;
   margin-top: 10em;
 }
@@ -24,7 +23,7 @@
 }
 
 #profile_form {
-  width: 65%;
+  width: 75%;
   align-self: center;
 }
 
@@ -33,6 +32,57 @@
   display: inline-block;
 }
 
+#list li {
+  padding-bottom: 0.6em;
+}
+
 #list li span {
   padding-right: 0.5em;
+}
+
+// Form
+label {
+  padding-right: 0.5em;
+}
+
+.form-group-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20%;
+}
+
+.form-group {
+  margin-top: 5px;
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-control-2 {
+  flex: 1 1 40%;
+  margin-right: 5px;
+  margin-left: 5px;
+  padding-bottom: 0.4em;
+}
+
+.form-control-3 {
+  flex: 1 1 20%;
+  margin: 5px 5px 5px 5px;
+  padding-bottom: 0.4em;
+}
+
+.form-control-full {
+  flex: 1 1 100%;
+  margin-right: 5px;
+  margin-left: 5px;
+  padding-bottom: 0.4em;
+}
+
+select {
+  width: 100%;
+  border: 1px solid #7c72a0;
+  background-color: white;
+  border-radius: 4px;
+  height: 28px;
 }
