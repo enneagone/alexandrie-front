@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
     private notifier: NotifyService,
   ) {
     // TODO creer un composant angular pour la selection dans date
-    for (let i = 0; i < 40; ++i) {
+    for (let i = 0; i < 100; ++i) {
       // @ts-ignore
       this.years.push(this.currentDate.getFullYear() - i);
     }
