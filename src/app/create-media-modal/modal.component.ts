@@ -19,18 +19,13 @@ export class ModalComponent implements OnInit, OnDestroy {
   @Input() id: string;
   private readonly element: any;
   addMediaForm: FormGroup;
+  submitted = false;
 
   constructor(
     private modalService: ModalService,
     private el: ElementRef,
     private formBuilder: FormBuilder,
   ) {
-    this.addMediaForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      type: ['', Validators.required],
-      author: ['', Validators.required],
-      description: ['', Validators.required],
-    });
     this.element = el.nativeElement;
   }
   get form() {
@@ -43,10 +38,14 @@ export class ModalComponent implements OnInit, OnDestroy {
       console.error('modal must have an id');
       return;
     }
-
+    this.addMediaForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      type: ['', Validators.required],
+      author: ['', Validators.required],
+      description: ['', Validators.required],
+    });
     // move element to bottom of page (just before </body>) so it can be displayed above everything else
     document.body.appendChild(this.element);
-
     // close modal on background click
     this.element.addEventListener('click', (el: any) => {
       if (el.target.className === 'jw-modal') {
@@ -77,8 +76,11 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.addMediaForm.reset();
-    console.warn('Done');
-    this.close();
+    this.submitted = true;
+    if (this.addMediaForm.valid) {
+      this.close();
+      console.warn('Done');
+      this.addMediaForm.reset();
+    }
   }
 }
