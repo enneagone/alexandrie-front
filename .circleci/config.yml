@@ -83,7 +83,7 @@ jobs:
     <<: *test
     steps:
       - build_front:
-          targetEnv: dev
+          targetEnv: devHosted
   build-prod:
     <<: *test
     steps:
