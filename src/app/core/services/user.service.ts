@@ -53,9 +53,7 @@ export class UserService {
           ),
         )
         .subscribe(
-          (data) => {
-            console.log(data);
-          },
+          (data) => {},
           (err) => this.purgeAuth(),
         );
     } else {
