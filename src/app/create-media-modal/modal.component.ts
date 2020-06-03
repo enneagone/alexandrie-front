@@ -6,7 +6,7 @@
   OnInit,
   OnDestroy,
 } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from './modal.service';
 
 @Component({
@@ -18,21 +18,25 @@ import { ModalService } from './modal.service';
 export class ModalComponent implements OnInit, OnDestroy {
   @Input() id: string;
   private readonly element: any;
-  checkoutForm: any;
+  addMediaForm: FormGroup;
 
   constructor(
     private modalService: ModalService,
     private el: ElementRef,
     private formBuilder: FormBuilder,
   ) {
-    this.checkoutForm = this.formBuilder.group({
-      name: '',
-      type: '',
-      author: '',
-      description: '',
+    this.addMediaForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      type: ['', Validators.required],
+      author: ['', Validators.required],
+      description: ['', Validators.required],
     });
     this.element = el.nativeElement;
   }
+  get form() {
+    return this.addMediaForm.controls;
+  }
+
   ngOnInit(): void {
     // ensure id attribute exists
     if (!this.id) {
@@ -69,11 +73,11 @@ export class ModalComponent implements OnInit, OnDestroy {
   close(): void {
     this.element.style.display = 'none';
     document.body.classList.remove('jw-modal-open');
-    this.checkoutForm.reset();
+    this.addMediaForm.reset();
   }
 
   onSubmit() {
-    this.checkoutForm.reset();
+    this.addMediaForm.reset();
     console.warn('Done');
   }
 }
