@@ -14,9 +14,11 @@ import { ProfileModule } from './profile/profile.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LayoutModule } from './layout/layout.module';
 import { SharedModule } from './shared/shared.module';
+import { CollectionDisplayComponent } from './collection-display/collection-display.component';
+import { ElementComponent } from './collection-display/element/element.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CollectionDisplayComponent, ElementComponent],
   imports: [
     BrowserModule,
     AuthModule,

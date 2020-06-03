@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { HomeAuthResolver } from './home-auth-resolver.service';
 import { DefaultLayoutComponent } from '../layout/default-layout/default-layout.component';
+import { CollectionDisplayComponent } from '../collection-display/collection-display.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,11 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
+        canActivate: [HomeAuthResolver],
+      },
+      {
+        path: 'collection',
+        component: CollectionDisplayComponent,
         canActivate: [HomeAuthResolver],
       },
     ],
