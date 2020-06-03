@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
@@ -9,14 +9,13 @@ import { NotifyService } from 'enneagone-angular-ds';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private currentTokenSubject: BehaviorSubject<boolean>;
-  public currentToken: Observable<boolean>;
+  private currentUserSubject: BehaviorSubject<boolean>;
+  public currentUser: Observable<boolean>;
   messageRegisterFailed = 'Register successful';
   messageUserExist = 'User already exist';
   messageSuccess = 'Register successful';
   messageLoginFailed = 'Login failed';
   messageLoginSuccess = 'Login success';
-
   /*
    * maintenant l'adresse est dans le fichier proxy.config.js
    * pour l'une des probleme, il y avait un probleme entre http et httpS
@@ -32,17 +31,37 @@ export class UserService {
     private jwtService: JwtService,
     private notifier: NotifyService,
   ) {
-    this.currentTokenSubject = new BehaviorSubject<boolean>(
+    this.currentUserSubject = new BehaviorSubject<boolean>(
       // @ts-ignore
       localStorage.getItem('jwtToken'),
     );
-    this.currentToken = this.currentTokenSubject.asObservable();
+    this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public get currentUserValue(): boolean {
-    return this.currentTokenSubject.value;
+    return this.currentUserSubject.value;
   }
 
+  userKnown() {
+    if (this.jwtService.getToken()) {
+      this.apiService
+        .get(
+          '/user/pingValidateToken',
+          new HttpHeaders().set(
+            'Authorization',
+            'Bearer ' + this.jwtService.getToken(),
+          ),
+        )
+        .subscribe(
+          (data) => {
+            this.setAuth(data);
+          },
+          (err) => this.purgeAuth(),
+        );
+    } else {
+      this.purgeAuth();
+    }
+  }
   getUser() {
     return this.apiService.get('/users/current');
   }
@@ -53,13 +72,13 @@ export class UserService {
 
   setAuth(token: string) {
     this.jwtService.saveToken(token);
-    this.currentTokenSubject.next(true);
+    this.currentUserSubject.next(true);
     this.router.navigate(['/home']);
   }
 
   purgeAuth() {
     // Remove JWT from localstorage
-    this.currentTokenSubject.next(false);
+    this.currentUserSubject.next(false);
     this.jwtService.destroyToken();
     this.router.navigate(['/login']);
   }
