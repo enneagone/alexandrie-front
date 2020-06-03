@@ -42,6 +42,7 @@ export class ModalComponent implements OnInit, OnDestroy {
       name: ['', Validators.required],
       type: ['', Validators.required],
       author: ['', Validators.required],
+      date: ['', Validators.required],
       description: ['', Validators.required],
     });
     // move element to bottom of page (just before </body>) so it can be displayed above everything else

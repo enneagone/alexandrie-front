@@ -15,7 +15,16 @@ import { MyCollectionComponent } from './my-collection/my-collection.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LayoutModule } from './layout/layout.module';
 import { SharedModule } from './shared/shared.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {
+  MatFormFieldControl,
+  MatFormFieldModule,
+} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// @ts-ignore
 @NgModule({
   declarations: [AppComponent, MyCollectionComponent],
   imports: [
@@ -31,8 +40,14 @@ import { SharedModule } from './shared/shared.module';
     FontAwesomeModule,
     LayoutModule,
     SharedModule,
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatDatepickerModule,
   ],
-  providers: [],
+  providers: [MatDatepickerModule, MatFormFieldControl],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
