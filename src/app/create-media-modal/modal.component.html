@@ -8,21 +8,34 @@
         </label>
         <input id="name" type="text" formControlName="name" />
       </div>
+      <div *ngIf="submitted && form.name.errors" class="invalid-feedback">
+        <div *ngIf="form.name.errors.required">name is required</div>
+      </div>
       <br />
+
       <div>
         <label for="type">
           type
         </label>
         <input id="type" type="text" formControlName="type" />
       </div>
+      <div *ngIf="submitted && form.type.errors" class="invalid-feedback">
+        <div *ngIf="form.type.errors.required">type is required</div>
+      </div>
+
       <br />
+
       <div>
         <label for="author">
           Author
         </label>
         <input id="author" type="text" formControlName="author" />
       </div>
+      <div *ngIf="submitted && form.author.errors" class="invalid-feedback">
+        <div *ngIf="form.author.errors.required">author is required</div>
+      </div>
       <br />
+
       <div>
         <label for="description">
           Description
@@ -30,6 +43,16 @@
         <textarea id="description" type="text" formControlName="description">
         </textarea>
       </div>
+
+      <div
+        *ngIf="submitted && form.description.errors"
+        class="invalid-feedback"
+      >
+        <div *ngIf="form.description.errors.required">
+          description is required
+        </div>
+      </div>
+
       <br />
       <div style="text-align: center;">
         <button class="button" type="submit">Add</button>
