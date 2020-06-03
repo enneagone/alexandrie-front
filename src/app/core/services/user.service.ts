@@ -47,6 +47,10 @@ export class UserService {
     return this.apiService.get('/users/current');
   }
 
+  postUser(form: FormData) {
+    return this.apiService.postForm('/users/update', form);
+  }
+
   setAuth(token: string) {
     this.jwtService.saveToken(token);
     this.currentTokenSubject.next(true);
