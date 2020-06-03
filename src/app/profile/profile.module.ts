@@ -13,10 +13,18 @@ import {
   faUserCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  imports: [ProfileRoutingModule, FontAwesomeModule, CommonModule, FormsModule],
+  imports: [
+    ProfileRoutingModule,
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    CommonModule,
+    FormsModule,
+    SharedModule,
+  ],
   declarations: [ProfileComponent],
   providers: [],
   exports: [ProfileComponent],
