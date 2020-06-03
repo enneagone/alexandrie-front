@@ -46,7 +46,7 @@ export class UserService {
     if (this.jwtService.getToken()) {
       this.apiService
         .get(
-          '/user/pingValidateToken',
+          '/users/pingValidateToken',
           new HttpHeaders().set(
             'Authorization',
             'Bearer ' + this.jwtService.getToken(),
@@ -54,7 +54,7 @@ export class UserService {
         )
         .subscribe(
           (data) => {
-            this.setAuth(data);
+            console.log(data);
           },
           (err) => this.purgeAuth(),
         );
