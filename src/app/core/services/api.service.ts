@@ -38,9 +38,9 @@ export class ApiService {
       .pipe(catchError(ApiService.formatErrors));
   }
 
-  postForm(path: string, form: FormData): Observable<any> {
+  putFormData(path: string, form: FormData): Observable<any> {
     return this.http
-      .post(`${environment.api_url}${path}`, form)
+      .put(`${environment.api_url}${path}`, form)
       .pipe(catchError(ApiService.formatErrors));
   }
 

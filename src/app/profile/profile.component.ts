@@ -22,8 +22,8 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   profile: User;
 
   profileForm = this.fb.group({
-    firstname: ['', Validators.required],
-    lastname: ['', Validators.required],
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
     country: ['', Validators.required],
     city: ['', Validators.required],
     email: ['', Validators.required],
@@ -42,14 +42,12 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   getProfile() {
     this.userService.getUser().subscribe(
       (user: User) => {
-        console.log(user);
         const date = this.parseDateTime(user.birthDate);
         this.profile = { ...user, birthDate: date };
         this.updateForm();
       },
       (error: Error) => {
         this.error = error;
-        console.log('Failed to retrieve user' + error);
       },
     );
   }
@@ -65,28 +63,40 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   private updateForm() {
     console.log('Updating form');
     this.profileForm.patchValue({
-      firstname: this.profile.firstName,
-      lastname: this.profile.lastName,
+      firstName: this.profile.firstName,
+      lastName: this.profile.lastName,
       email: this.profile.email,
       city: this.profile.city,
       country: this.profile.country,
       username: this.profile.username,
       date: this.profile.birthDate,
+      password: this.profile.password,
     });
   }
 
   onSubmit() {
-    console.log('Submitting');
-    console.log(this.profileForm.value);
     const form = new FormData();
-    form.append('user', `${this.profileForm.value}`);
-    this.userService.postUser(form).subscribe(
-      (data) => {
-        console.log(data);
+    const wrapperUser = {
+      firstName: this.profileForm.value.firstName,
+      lastName: this.profileForm.value.lastName,
+      birthDate: this.profileForm.value.date,
+      country: this.profileForm.value.country,
+      city: this.profileForm.value.city,
+      email: this.profileForm.value.email,
+      username: this.profileForm.value.username,
+      password: this.profileForm.value.password,
+    };
+
+    form.append('user', JSON.stringify(wrapperUser));
+    this.userService.updateUser(form).subscribe(
+      (user: User) => {
+        const date = this.parseDateTime(user.birthDate);
+        this.profile = { ...user, birthDate: date };
+        this.notifier.notify('Success', 1);
       },
       (error: Error) => {
         this.error = error;
-        console.log('Failed to retrieve user' + error);
+        this.notifier.notify(this.error.message, 2);
       },
     );
   }
