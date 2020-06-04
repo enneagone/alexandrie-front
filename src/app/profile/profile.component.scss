@@ -1,5 +1,7 @@
 #profile_container {
   padding: 1em;
+  height: 100%;
+  width: 90%;
   display: flex;
 }
 
@@ -10,50 +12,90 @@
   font-size: 1em;
   transition: 0.3s;
   border-radius: 5px;
-  width: 25%;
-  margin-left: 5em;
-  margin-top: 10em;
+  height: 80%;
+  width: 35%;
+  margin-top: 50vh;
+  transform: translateY(-50%);
 }
 
 #profile_view img {
   vertical-align: middle;
-  width: 50%;
+  width: 40%;
   margin: 1em;
   border-radius: 50%;
 }
 
+#picture {
+  height: 30%;
+}
+
+#container {
+  height: 70%;
+}
 #profile_form {
-  width: 75%;
-  align-self: center;
+  width: 65%;
+  margin-left: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  font-size: 1em;
+  transition: 0.3s;
+  border-radius: 5px;
+  height: 80%;
+  margin-top: 50vh;
+  transform: translateY(-50%);
 }
 
 #list {
   text-align: left;
+  height: 100%;
   display: inline-block;
 }
 
 #list li {
-  padding-bottom: 0.6em;
+  height: 60px;
+}
+
+#list ul {
+  height: 100%;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0;
 }
 
 #list li span {
-  padding-right: 0.5em;
+  padding-left: 0.5em;
+  color: white;
 }
 
-// Form
-label {
-  padding-right: 0.5em;
+#icon-username {
+  color: #7fdd6f;
+}
+
+#icon-birthdate {
+  color: #dd6f6f;
+}
+#icon-location {
+  color: #ff7a00;
+}
+#icon-mail {
+  color: #0f46ab;
+}
+
+#form-title {
+  font-size: 1.5em;
 }
 
 .form-group-profile {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20%;
+  margin-top: 10%;
 }
 
 .form-group {
-  margin-top: 5px;
+  margin-top: 20px;
   width: 75%;
   display: flex;
   flex-wrap: wrap;
@@ -85,4 +127,12 @@ select {
   background-color: white;
   border-radius: 4px;
   height: 28px;
+}
+
+.span-text-color {
+  color: #7c72a0;
+}
+
+.profil-info {
+  font-size: 1.5em;
 }

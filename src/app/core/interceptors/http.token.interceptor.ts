@@ -19,7 +19,7 @@ export class HttpTokenInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     let headersConfig = {};
 
-    if (req.method != 'PUT') {
+    if (req.method !== 'PUT') {
       // @ts-ignore
       headersConfig = {
         'Content-Type': 'application/json',

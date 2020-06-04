@@ -92,7 +92,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       (user: User) => {
         const date = this.parseDateTime(user.birthDate);
         this.profile = { ...user, birthDate: date };
-        this.notifier.notify('Success', 1);
+        this.notifier.notify('Profile updated', 1);
       },
       (error: Error) => {
         this.error = error;
