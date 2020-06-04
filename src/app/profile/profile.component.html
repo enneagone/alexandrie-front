@@ -7,19 +7,31 @@
       <div id="list">
         <ul class="fa-ul">
           <li>
-            <span><fa-icon icon="user-circle"></fa-icon></span
-            >{{ profile.firstName }} {{ profile.lastName | uppercase }}
+            <div class="profil-info">
+              <fa-icon id="icon-username" icon="user-circle"></fa-icon>
+              <span
+                >{{ profile.firstName }}
+                {{ profile.lastName | uppercase }}</span
+              >
+            </div>
           </li>
           <li>
-            <span><fa-icon icon="birthday-cake"></fa-icon></span
-            >{{ profile.birthDate }}
+            <div class="profil-info">
+              <fa-icon id="icon-birthdate" icon="birthday-cake"></fa-icon>
+              <span>{{ profile.birthDate }}</span>
+            </div>
           </li>
           <li>
-            <span><fa-icon icon="map-marker-alt"></fa-icon></span>
-            {{ profile.city }}, {{ profile.country | uppercase }}
+            <div class="profil-info">
+              <fa-icon id="icon-location" icon="map-marker-alt"></fa-icon>
+              <span>{{ profile.city }}, {{ profile.country | uppercase }}</span>
+            </div>
           </li>
           <li>
-            <span><fa-icon icon="envelope"></fa-icon></span>{{ profile.email }}
+            <div class="profil-info">
+              <fa-icon id="icon-mail" icon="envelope"></fa-icon>
+              <span>{{ profile.email }}</span>
+            </div>
           </li>
         </ul>
       </div>
@@ -29,22 +41,53 @@
     <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
       <div class="form-group-profile">
+        <div id="form-title">
+          <span>Personal informations</span>
+        </div>
         <div class="form-group">
           <div class="form-control-2">
-            <label>First Name</label>
-            <input type="text" formControlName="firstName" />
+            <e9-input
+              label="First Name"
+              type="text"
+              ngDefaultControl
+              formControlName="firstName"
+              [value]="profile.firstName"
+              labelColor="#7C72A0"
+              color="#7C72A0"
+            ></e9-input>
           </div>
           <div class="form-control-2">
-            <label>Last Name</label>
-            <input type="text" formControlName="lastName" />
+            <e9-input
+              label="Last Name"
+              type="text"
+              ngDefaultControl
+              formControlName="lastName"
+              [value]="profile.lastName"
+              labelColor="#7C72A0"
+              color="#7C72A0"
+            ></e9-input>
           </div>
           <div class="form-control-2">
-            <label>Country</label>
-            <input type="text" formControlName="country" />
+            <e9-input
+              label="Country"
+              type="text"
+              ngDefaultControl
+              formControlName="country"
+              [value]="profile.country"
+              labelColor="#7C72A0"
+              color="#7C72A0"
+            ></e9-input>
           </div>
           <div class="form-control-2">
-            <label>City</label>
-            <input type="text" formControlName="city" />
+            <e9-input
+              label="City"
+              type="text"
+              ngDefaultControl
+              formControlName="city"
+              [value]="profile.city"
+              labelColor="#7C72A0"
+              color="#7C72A0"
+            ></e9-input>
           </div>
           <div class="form-control-full span-text-color">
             <span>Birth date</span>
@@ -57,25 +100,41 @@
             />
           </div>
           <div class="form-control-full">
-            <label>Username</label>
-            <input type="text" formControlName="username" />
+            <e9-input
+              label="Username"
+              type="text"
+              ngDefaultControl
+              formControlName="username"
+              [value]="profile.username"
+              labelColor="#7C72A0"
+              color="#7C72A0"
+            ></e9-input>
           </div>
           <div class="form-control-full">
-            <label>Email</label>
-            <input type="text" formControlName="email" />
+            <e9-input
+              label="Email"
+              type="text"
+              ngDefaultControl
+              formControlName="email"
+              [value]="profile.email"
+              labelColor="#7C72A0"
+              color="#7C72A0"
+            ></e9-input>
           </div>
           <div class="form-control-full">
-            <label>Password</label>
-            <input type="password" formControlName="password" />
+            <e9-input
+              label="Password"
+              type="password"
+              ngDefaultControl
+              formControlName="password"
+              [value]="profile.password"
+              labelColor="#7C72A0"
+              color="#7C72A0"
+            ></e9-input>
           </div>
         </div>
         <div class="form-group-button">
-          <e9-button
-            value="Update profile"
-            color="#7FDD6F"
-            size="m"
-            width="150px"
-          ></e9-button>
+          <e9-button value="Save profile" size="lg"></e9-button>
         </div>
       </div>
     </form>
