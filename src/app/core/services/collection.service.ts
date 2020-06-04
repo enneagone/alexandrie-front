@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Element } from '@angular/compiler';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ELEMENT } from './mock-element';
 
 @Injectable({
@@ -9,7 +9,8 @@ import { ELEMENT } from './mock-element';
 export class CollectionService {
   constructor() {}
 
-  getCollection() {
-    return ELEMENT;
+  // TODO bien sur faire une vraie requete, il faudra ^
+  getElements() {
+    return of(ELEMENT);
   }
 }

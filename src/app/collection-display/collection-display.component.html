@@ -1,2 +1,8 @@
 <p>collection-display works!</p>
 <h2>{{ title }}</h2>
+<ul class="media">
+  <li *ngFor="let med of elements">
+    <span class="badge">{{ med.id }}</span> {{ med.titre }}
+    {{ med.datePublication }}
+  </li>
+</ul>
