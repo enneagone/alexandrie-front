@@ -23,8 +23,8 @@
     <div class="form-group">
       <div class="form-control-2">
         <e9-input
-          [value]="user.firstName"
-          (ngValueChange)="user.firstName = $event"
+          ngDefaultControl
+          formControlName="firstName"
           type="text"
           label="Firstname"
           labelColor="#7C72A0"
@@ -38,8 +38,8 @@
       </div>
       <div class="form-control-2">
         <e9-input
-          [value]="user.lastName"
-          (ngValueChange)="user.lastName = $event"
+          ngDefaultControl
+          formControlName="lastName"
           type="text"
           label="Lastname"
           labelColor="#7C72A0"
@@ -53,8 +53,8 @@
       </div>
       <div class="form-control-2">
         <e9-input
-          [value]="user.country"
-          (ngValueChange)="user.country = $event"
+          ngDefaultControl
+          formControlName="country"
           type="text"
           label="Country"
           labelColor="#7C72A0"
@@ -66,8 +66,8 @@
       </div>
       <div class="form-control-2">
         <e9-input
-          [value]="user.city"
-          (ngValueChange)="user.city = $event"
+          ngDefaultControl
+          formControlName="city"
           type="text"
           label="City"
           labelColor="#7C72A0"
@@ -121,8 +121,8 @@
       </div>
       <div class="form-control-full">
         <e9-input
-          [value]="user.username"
-          (ngValueChange)="user.username = $event"
+          ngDefaultControl
+          formControlName="username"
           type="text"
           label="Username"
           labelColor="#7C72A0"
@@ -134,8 +134,8 @@
       </div>
       <div class="form-control-full">
         <e9-input
-          [value]="user.email"
-          (ngValueChange)="user.email = $event"
+          ngDefaultControl
+          formControlName="email"
           type="text"
           label="Email"
           labelColor="#7C72A0"
@@ -147,8 +147,8 @@
       </div>
       <div class="form-control-full">
         <e9-input
-          [value]="user.password"
-          (ngValueChange)="user.password = $event"
+          ngDefaultControl
+          formControlName="password"
           type="password"
           label="Password"
           labelColor="#7C72A0"
@@ -159,203 +159,6 @@
         </div>
       </div>
     </div>
-    <!--    <table id="RegisterTable">-->
-    <!--        <tr>-->
-    <!--          <td>-->
-    <!--            <div class="form-group-name">-->
-    <!--              <label>First Name</label>-->
-    <!--              <br />-->
-    <!--              <input-->
-    <!--                type="text"-->
-    <!--                formControlName="firstName"-->
-    <!--                class="form-control"-->
-    <!--                [ngClass]="{ 'is-valid': submitted && f.firstName.errors }"-->
-    <!--              />-->
-    <!--              <div-->
-    <!--                *ngIf="submitted && f.firstName.errors"-->
-    <!--                class="invalid-feedback"-->
-    <!--              >-->
-    <!--                <div *ngIf="f.firstName.errors.required">-->
-    <!--                  First name is required-->
-    <!--                </div>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </td>-->
-    <!--          <td>-->
-    <!--            <div class="form-group-name">-->
-    <!--              <label>Last Name</label>-->
-    <!--              <br />-->
-    <!--              <input-->
-    <!--                type="text"-->
-    <!--                formControlName="lastName"-->
-    <!--                class="form-control"-->
-    <!--                [ngClass]="{ 'is-valid': submitted && f.lastName.errors }"-->
-    <!--              />-->
-    <!--              <div-->
-    <!--                *ngIf="submitted && f.lastName.errors"-->
-    <!--                class="invalid-feedback"-->
-    <!--              >-->
-    <!--                <div *ngIf="f.lastName.errors.required">-->
-    <!--                  Last name is required-->
-    <!--                </div>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </td>-->
-    <!--          <td>-->
-    <!--            <div class="form-group-username">-->
-    <!--              <label>Username</label>-->
-    <!--              <br />-->
-    <!--              <input-->
-    <!--                type="text"-->
-    <!--                formControlName="username"-->
-    <!--                class="form-control"-->
-    <!--                [ngClass]="{ 'is-invalid': submitted && f.username.errors }"-->
-    <!--              />-->
-    <!--              <div-->
-    <!--                *ngIf="submitted && f.username.errors"-->
-    <!--                class="invalid-feedback"-->
-    <!--              >-->
-    <!--                <div *ngIf="f.username.errors.required">Username is required</div>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </td>-->
-    <!--        </tr>-->
-    <!--        <tr>-->
-    <!--          <td>-->
-    <!--            <div class="form-group-country">-->
-    <!--              <label>Country</label>-->
-    <!--              <br />-->
-    <!--              <input-->
-    <!--                type="text"-->
-    <!--                formControlName="country"-->
-    <!--                class="form-control"-->
-    <!--                [ngClass]="{ 'is-valid': submitted && f.country.errors }"-->
-    <!--              />-->
-    <!--              <div *ngIf="submitted && f.country.errors" class="invalid-feedback">-->
-    <!--                <div *ngIf="f.country.errors.required">country is required</div>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </td>-->
-    <!--          <td>-->
-    <!--            <div class="form-group-city">-->
-    <!--              <label>City</label>-->
-    <!--              <br />-->
-    <!--              <input-->
-    <!--                type="text"-->
-    <!--                formControlName="city"-->
-    <!--                class="form-control"-->
-    <!--                [ngClass]="{ 'is-valid': submitted && f.city.errors }"-->
-    <!--              />-->
-    <!--              <div *ngIf="submitted && f.city.errors" class="invalid-feedback">-->
-    <!--                <div *ngIf="f.city.errors.required">city is required</div>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </td>-->
-    <!--        </tr>-->
-    <!--        <tr>-->
-    <!--          <label> Birth date </label>-->
-    <!--          <br />-->
-    <!--          <td>-->
-    <!--            <div class="form-group-birthDay">-->
-    <!--              <select-->
-    <!--                formControlName="day"-->
-    <!--                class="form-control"-->
-    <!--                [ngClass]="{ 'is-valid:': submitted && f.day.errors }"-->
-    <!--              >-->
-    <!--                <option *ngFor="let number of numbers" [value]="number">{{-->
-    <!--                  number-->
-    <!--                  }}</option>-->
-    <!--              </select>-->
-    <!--              <div *ngIf="submitted && f.day.errors" class="invalid-feedback">-->
-    <!--                <div *ngIf="f.day.errors.required">day is required</div>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </td>-->
-    <!--          <td>-->
-    <!--            <div class="form-group-mounth">-->
-    <!--              <select-->
-    <!--                formControlName="mounth"-->
-    <!--                class="form-control"-->
-    <!--                [ngClass]="{ 'is-valid:': submitted && f.mounth.errors }"-->
-    <!--              >-->
-    <!--                <option [value]="mounth.value" *ngFor="let mounth of mounths">-->
-    <!--                  {{ mounth.text }}</option-->
-    <!--                >-->
-    <!--              </select>-->
-    <!--              <div *ngIf="submitted && f.mounth.errors" class="invalid-feedback">-->
-    <!--                <div *ngIf="f.mounth.errors.required">mounth is required</div>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </td>-->
-    <!--          <td>-->
-    <!--            <div class="form-group-year">-->
-    <!--              <select-->
-    <!--                formControlName="year"-->
-    <!--                class="form-control"-->
-    <!--                [ngClass]="{ 'is-valid:': submitted && f.year.errors }"-->
-    <!--              >-->
-    <!--                <option [value]="year" *ngFor="let year of years">-->
-    <!--                  {{ year }}</option-->
-    <!--                >-->
-    <!--              </select>-->
-    <!--              <div *ngIf="submitted && f.year.errors" class="invalid-feedback">-->
-    <!--                <div *ngIf="f.year.errors.required">year is required</div>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </td>-->
-    <!--        </tr>-->
-    <!--        <tr>-->
-    <!--          <td>-->
-    <!--            <div class="form-group-email">-->
-    <!--              <label>Email</label>-->
-    <!--              <br />-->
-    <!--              <input-->
-    <!--                type="email"-->
-    <!--                formControlName="email"-->
-    <!--                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"-->
-    <!--                class="form-control"-->
-    <!--                [ngClass]="{-->
-    <!--                'is-valid':-->
-    <!--                  submitted &&-->
-    <!--                  f.email.errors &&-->
-    <!--                  (f.email.touched || f.email.dirty)-->
-    <!--              }"-->
-    <!--              />-->
-    <!--              <div-->
-    <!--                *ngIf="-->
-    <!--                submitted &&-->
-    <!--                f.email.errors &&-->
-    <!--                (f.email.touched || f.email.dirty)-->
-    <!--              "-->
-    <!--                class="invalid-feedback"-->
-    <!--              >-->
-    <!--                <div *ngIf="f.email.errors.required">Email is required</div>-->
-    <!--                <div *ngIf="f.email.touched || f.email.dirty">-->
-    <!--                  Email is not correct-->
-    <!--                </div>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </td>-->
-    <!--          <td>-->
-    <!--            <div class="form-group-password">-->
-    <!--              <label>Password</label>-->
-    <!--              <br />-->
-    <!--              <input-->
-    <!--                type="password"-->
-    <!--                formControlName="password"-->
-    <!--                class="form-control"-->
-    <!--                [ngClass]="{ 'is-invalid': submitted && f.password.errors }"-->
-    <!--              />-->
-    <!--              <div-->
-    <!--                *ngIf="submitted && f.password.errors"-->
-    <!--                class="invalid-feedback"-->
-    <!--              >-->
-    <!--                <div *ngIf="f.password.errors.required">Password is required</div>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </td>-->
-    <!--        </tr>-->
-    <!--    </table>-->
     <div class="form-group-button">
       <e9-button
         value="Sign in"
@@ -366,6 +169,3 @@
     </div>
   </div>
 </form>
-
-<!--<div *ngIf="error" class="alert alert-danger">{{ error }}</div>-->
-<!--<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">-->

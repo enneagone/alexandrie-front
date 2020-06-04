@@ -11,7 +11,7 @@ import { NotifyService } from 'enneagone-angular-ds';
 export class UserService {
   private currentUserSubject: BehaviorSubject<boolean>;
   public currentUser: Observable<boolean>;
-  messageRegisterFailed = 'Register successful';
+  messageRegisterFailed = 'Register failed';
   messageUserExist = 'User already exist';
   messageSuccess = 'Register successful';
   messageLoginFailed = 'Login failed';

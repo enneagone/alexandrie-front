@@ -87,13 +87,13 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.user.picture = 'none';
-    this.f.firstName.setValue(this.user.firstName);
-    this.f.lastName.setValue(this.user.lastName);
-    this.f.country.setValue(this.user.country);
-    this.f.city.setValue(this.user.city);
-    this.f.email.setValue(this.user.email);
-    this.f.username.setValue(this.user.username);
-    this.f.password.setValue(this.user.password);
+    // this.f.firstName.setValue(this.user.firstName);
+    // this.f.lastName.setValue(this.user.lastName);
+    // this.f.country.setValue(this.user.country);
+    // this.f.city.setValue(this.user.city);
+    // this.f.email.setValue(this.user.email);
+    // this.f.username.setValue(this.user.username);
+    // this.f.password.setValue(this.user.password);
     if (this.loginForm.invalid) {
       this.notifier.notify(this.messageFailed, 2);
       return;
@@ -104,6 +104,13 @@ export class RegisterComponent implements OnInit {
       birthDate,
       'yyyy-MM-dd',
     ) as string;
+    this.user.firstName = this.loginForm.value.firstName;
+    this.user.lastName = this.loginForm.value.lastName;
+    this.user.country = this.loginForm.value.country;
+    this.user.city = this.loginForm.value.city;
+    this.user.email = this.loginForm.value.email;
+    this.user.username = this.loginForm.value.username;
+    this.user.password = this.loginForm.value.password;
     this.authenticationService.register(this.user);
   }
 
