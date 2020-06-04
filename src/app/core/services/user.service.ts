@@ -47,8 +47,8 @@ export class UserService {
     return this.apiService.get('/users/current');
   }
 
-  postUser(form: FormData) {
-    return this.apiService.postForm('/users/update', form);
+  updateUser(form: FormData) {
+    return this.apiService.putFormData('/users/current', form);
   }
 
   setAuth(token: string) {
