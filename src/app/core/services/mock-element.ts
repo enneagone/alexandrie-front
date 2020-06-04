@@ -1,3 +1,5 @@
+import { Element } from '../../collection-display/element/Element';
+
 export const ELEMENT: Element[] = [
   {
     datePublication: '1984-01-24',
