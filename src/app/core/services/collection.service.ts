@@ -14,19 +14,19 @@ export class CollectionService {
   constructor(private http: HttpClient) {}
 
   // TODO bien sur faire une vraie requete, il faudra ^
-  getElements(path: String) {
+  /*getElements(path: String) {
     return of(ELEMENT);
-  }
+  }*/
 
   // pour le moment observable any mais il faudra peut etre preciser
   // le path c'est l'url de l'adresse de l'api
   /* get elements from the collection of medias */
-  /*getElements(
+  getElements(
     path: string,
     params: HttpHeaders = new HttpHeaders(),
   ): Observable<any> {
     return this.http
       .get(`${environment.api_url}${path}`, { headers: params })
       .pipe(catchError(ApiService.formatErrors));
-  }*/
+  }
 }
