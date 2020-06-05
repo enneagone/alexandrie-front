@@ -1,9 +1,12 @@
 <h2>{{ title }}</h2>
 <ul class="media">
+  <h2 class="emptyCollection" *ngIf="elements.length == 0">
+    No media in collection
+  </h2>
   <li *ngFor="let med of elements">
     <span class="cardMedia" *ngIf="noPicture"> no picture<br /></span>
-    <span class="cardMedia">id : {{ med.id }}<br /></span>
-    <span class="cardMedia">title : {{ med.titre }}<br /></span>
-    <span class="cardMedia">publish date :{{ med.datePublication }}<br /></span>
+    <!--span class="cardMedia">Id : {{ med.id }}<br /></span-->
+    <span class="cardMedia">Title : {{ med.titre }}<br /></span>
+    <span class="cardMedia">Publish date :{{ med.datePublication }}<br /></span>
   </li>
 </ul>
