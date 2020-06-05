@@ -1,10 +1,11 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
-  CUSTOM_ELEMENTS_SCHEMA,
+  ElementRef,
   Input,
   OnInit,
-  SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import { UserService } from '../core/services';
 import { User } from '../core/models';
@@ -17,9 +18,11 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit, AfterViewInit {
+  @ViewChild('imgProfile') imgProfile: ElementRef;
   error: Error;
   @Input()
   profile: User;
+  imageProfile = 'assets/default-profile.png';
 
   profileForm = this.fb.group({
     firstName: ['', Validators.required],
@@ -45,11 +48,26 @@ export class ProfileComponent implements OnInit, AfterViewInit {
         const date = this.parseDateTime(user.birthDate);
         this.profile = { ...user, birthDate: date };
         this.updateForm();
+        if (this.profile.image !== null) {
+          this.userService.getUserImage(this.profile.image).subscribe(
+            (blob: Blob) => {
+              this.setImage(blob);
+            },
+            (error: Error) => {
+              this.error = error;
+            },
+          );
+        }
       },
       (error: Error) => {
         this.error = error;
       },
     );
+  }
+
+  setImage(blob: Blob) {
+    const urlCreator = window.URL || window.webkitURL;
+    this.imgProfile.nativeElement.src = urlCreator.createObjectURL(blob);
   }
 
   private parseDateTime(dateTime: string) {
@@ -61,7 +79,6 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   }
 
   private updateForm() {
-    console.log('Updating form');
     this.profileForm.patchValue({
       firstName: this.profile.firstName,
       lastName: this.profile.lastName,
@@ -73,8 +90,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       password: this.profile.password,
     });
   }
-
-  onSubmit() {
+  createFormDataUser() {
     const form = new FormData();
     const wrapperUser = {
       firstName: this.profileForm.value.firstName,
@@ -88,6 +104,9 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     };
 
     form.append('user', JSON.stringify(wrapperUser));
+    return form;
+  }
+  updateUser(form: FormData) {
     this.userService.updateUser(form).subscribe(
       (user: User) => {
         const date = this.parseDateTime(user.birthDate);
@@ -99,6 +118,19 @@ export class ProfileComponent implements OnInit, AfterViewInit {
         this.notifier.notify(this.error.message, 2);
       },
     );
+  }
+  onSubmit() {
+    const form = this.createFormDataUser();
+    this.updateUser(form);
+  }
+
+  onFileChange($event: { target: { files: string | any[] } }) {
+    if ($event.target.files && $event.target.files.length) {
+      const [file] = $event.target.files;
+      const form = this.createFormDataUser();
+      form.append('image', file);
+      this.updateUser(form);
+    }
   }
 
   ngOnInit(): void {}

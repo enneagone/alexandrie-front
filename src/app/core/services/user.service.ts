@@ -64,6 +64,10 @@ export class UserService {
     return this.apiService.get('/users/current');
   }
 
+  getUserImage(imageName: string) {
+    return this.apiService.getFile(`/download/images/${imageName}`);
+  }
+
   updateUser(form: FormData) {
     return this.apiService.putFormData('/users/current', form);
   }
