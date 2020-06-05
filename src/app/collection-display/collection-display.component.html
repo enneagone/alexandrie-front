@@ -2,7 +2,8 @@
 <h2>{{ title }}</h2>
 <ul class="media">
   <li *ngFor="let med of elements">
-    <span class="badge">{{ med.id }}</span> {{ med.titre }}
-    {{ med.datePublication }}
+    <span class="cardMedia">id : {{ med.id }}</span
+    ><br />title : {{ med.titre }}<br />
+    publish date :{{ med.datePublication }}<br />
   </li>
 </ul>
