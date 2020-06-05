@@ -22,7 +22,6 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   error: Error;
   @Input()
   profile: User;
-  imageProfile = 'assets/default-profile.png';
 
   profileForm = this.fb.group({
     firstName: ['', Validators.required],
