@@ -40,13 +40,13 @@ export class RegisterComponent implements OnInit {
   user: User = new (class implements User {
     firstName: string;
     lastName: string;
-    picture: string;
     birthDate: string;
     city: string;
     country: string;
     email: string;
     password: string;
     username: string;
+    image: string;
   })();
 
   constructor(
@@ -86,7 +86,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    this.user.picture = 'none';
+    this.user.image = 'none';
     // this.f.firstName.setValue(this.user.firstName);
     // this.f.lastName.setValue(this.user.lastName);
     // this.f.country.setValue(this.user.country);

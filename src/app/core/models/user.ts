@@ -5,7 +5,7 @@ export interface User {
   country: string;
   city: string;
   email: string;
-  picture: string;
   password: string;
   username: string;
+  image: string;
 }

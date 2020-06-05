@@ -21,6 +21,18 @@ export class ApiService {
       .pipe(catchError(ApiService.formatErrors));
   }
 
+  getFile(
+    path: string,
+    params: HttpHeaders = new HttpHeaders(),
+  ): Observable<any> {
+    return this.http
+      .get(`${environment.api_url}${path}`, {
+        headers: params,
+        responseType: 'blob',
+      })
+      .pipe(catchError(ApiService.formatErrors));
+  }
+
   // tslint:disable-next-line:ban-types
   put(path: string, body: Object = {}): Observable<any> {
     return this.http
