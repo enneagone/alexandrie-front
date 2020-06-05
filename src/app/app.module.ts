@@ -15,11 +15,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LayoutModule } from './layout/layout.module';
 import { SharedModule } from './shared/shared.module';
 import { CollectionDisplayComponent } from './collection-display/collection-display.component';
-import { ElementComponent } from './collection-display/element/element.component';
 import { CollectionRoutingModule } from './collection-display/collection-routing.module';
 
 @NgModule({
-  declarations: [AppComponent, CollectionDisplayComponent, ElementComponent],
+  declarations: [AppComponent, CollectionDisplayComponent],
   imports: [
     BrowserModule,
     AuthModule,
