@@ -892,7 +892,7 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@fortawesome/angular-fontawesome@0.6.1":
+"@fortawesome/angular-fontawesome@^0.6.1":
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/@fortawesome/angular-fontawesome/-/angular-fontawesome-0.6.1.tgz#1ebe5db16bfdd4be44bdde61f78c760eb4e219fa"
   integrity sha512-ARQjtRuT+ZskzJDJKPwuiGO3+7nS0iyNLU/uHVJHfG4LwGJxwVIGldwg1SU957sra0Z0OtWEajHMhiS4vB9LwQ==
@@ -1552,6 +1552,13 @@ alphanum-sort@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
+
+angular-moment@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/angular-moment/-/angular-moment-1.3.0.tgz#f501f66b6fcc832d8d36f8905cc7a93123ab2af0"
+  integrity sha512-KG8rvO9MoaBLwtGnxTeUveSyNtrL+RNgGl1zqWN36+HDCCVGk2DGWOzqKWB6o+eTTbO3Opn4hupWKIElc8XETA==
+  dependencies:
+    moment ">=2.8.0 <3.0.0"
 
 ansi-align@^2.0.0:
   version "2.0.0"
@@ -3818,10 +3825,10 @@ enhanced-resolve@4.1.1, enhanced-resolve@^4.1.0:
     memory-fs "^0.5.0"
     tapable "^1.0.0"
 
-enneagone-angular-ds@^1.6.4:
-  version "1.6.4"
-  resolved "https://registry.yarnpkg.com/enneagone-angular-ds/-/enneagone-angular-ds-1.6.4.tgz#3349c2897ce54a696a1cee1a4f6788da5d466719"
-  integrity sha512-xQAgZ2lfDUaz3UKdQ+Dh1UswXCrP+YGuVqDOsydD/nG3poGNKpi7mfBw9t/1GVxOzn/838NUV1oUyZZ9sK7F7w==
+enneagone-angular-ds@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/enneagone-angular-ds/-/enneagone-angular-ds-1.7.0.tgz#f965361927f3bba1bf19893198edf3bb3db5b862"
+  integrity sha512-6CL9Dy2JZJ7Q48de92v4jWIlarhy+8DGORhO+S3IlVk6LCPkFX6fzALXSjBzq+482P21NDXdsuf3UfVPC451Hg==
   dependencies:
     tslib "^1.10.0"
 
@@ -6909,6 +6916,11 @@ modify-values@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/modify-values/-/modify-values-1.0.1.tgz#b3939fa605546474e3e3e3c63d64bd43b4ee6022"
   integrity sha512-xV2bxeN6F7oYjZWTe/YPAy6MN2M+sL4u/Rlm2AHCIVGfo2p1yGmBHQ6vHehl4bRTZBdHu3TSkWdYgkwpYzAGSw==
+
+"moment@>=2.8.0 <3.0.0":
+  version "2.26.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.26.0.tgz#5e1f82c6bafca6e83e808b30c8705eed0dcbd39a"
+  integrity sha512-oIixUO+OamkUkwjhAVE18rAMfRJNsNe/Stid/gwHSOfHrOtw9EhAY2AHvdKZ/k/MggcYELFCJz/Sn2pL8b8JMw==
 
 move-concurrently@^1.0.1:
   version "1.0.1"

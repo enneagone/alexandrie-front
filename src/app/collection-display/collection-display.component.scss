@@ -1,0 +1,46 @@
+/* mediaComponent's private CSS styles */
+/* j'ai repris le css du tuto d'angular de google ^^*/
+.media {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 15em;
+}
+.media li {
+  color: white;
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  background-color: #7c72a0;
+  margin: 0.5em;
+  padding: 0.3em 0;
+  height: 3em;
+  border-radius: 4px;
+}
+.media li:hover {
+  color: #464646;
+  background-color: #7c72a0;
+  left: 0.1em;
+}
+.media li.selected {
+  background-color: #b8a6e9;
+  color: #464646;
+}
+.media li.selected:hover {
+  background-color: #bbd8dc;
+  color: white;
+}
+.media .badge {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0 0.7em;
+  background-color: #7c72a0;
+  line-height: 1em;
+  position: relative;
+  left: -1px;
+  top: -4px;
+  height: 1.8em;
+  margin-right: 0.8em;
+  border-radius: 4px 0 0 4px;
+}
