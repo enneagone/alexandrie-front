@@ -19,7 +19,9 @@ export class CollectionDisplayComponent implements OnInit {
 
   private getCollection() {
     this.collectionService
-      .getElements()
+      .getElements('/public/medias')
       .subscribe((elem) => (this.elements = elem));
+    //
+    // .subscribe((elem) => (this.elements = elem));
   }
 }

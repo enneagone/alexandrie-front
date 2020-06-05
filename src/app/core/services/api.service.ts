@@ -11,7 +11,7 @@ export class ApiService {
   // tslint:disable-next-line:no-shadowed-variable
   constructor(private http: HttpClient, private jwtService: JwtService) {}
 
-  private static formatErrors(error: any) {
+  static formatErrors(error: any) {
     return throwError(error.error);
   }
 
