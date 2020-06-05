@@ -8,8 +8,9 @@ import { Element } from './element/Element';
   styleUrls: ['./collection-display.component.scss'],
 })
 export class CollectionDisplayComponent implements OnInit {
-  title = 'Collection display component';
+  title = 'Media Collection List';
   elements: Element[];
+  noPicture: true;
 
   constructor(private collectionService: CollectionService) {}
 
@@ -21,7 +22,5 @@ export class CollectionDisplayComponent implements OnInit {
     this.collectionService
       .getElements('/public/medias')
       .subscribe((elem) => (this.elements = elem));
-    //
-    // .subscribe((elem) => (this.elements = elem));
   }
 }

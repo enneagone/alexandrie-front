@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home.component';
-import { HomeAuthResolver } from './home-auth-resolver.service';
 import { DefaultLayoutComponent } from '../layout/default-layout/default-layout.component';
-import { CollectionDisplayComponent } from '../collection-display/collection-display.component';
+import { CollectionDisplayComponent } from './collection-display.component';
+import { HomeAuthResolver } from '../home/home-auth-resolver.service';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'collection',
     component: DefaultLayoutComponent,
     children: [
       {
         path: '',
-        component: HomeComponent,
+        component: CollectionDisplayComponent,
         canActivate: [HomeAuthResolver],
       },
     ],
@@ -23,4 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class HomeRoutingModule {}
+export class CollectionRoutingModule {}
