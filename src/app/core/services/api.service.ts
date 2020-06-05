@@ -67,6 +67,15 @@ export class ApiService {
     );
   }
 
+  getElements(
+    path: string,
+    params: HttpHeaders = new HttpHeaders(),
+  ): Observable<any> {
+    return this.http
+      .get(`${environment.api_url}${path}`, { headers: params })
+      .pipe(catchError(ApiService.formatErrors));
+  }
+
   delete(path: string): Observable<any> {
     return this.http
       .delete(`${environment.api_url}${path}`)

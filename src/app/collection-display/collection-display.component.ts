@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CollectionService } from '../core/services/collection.service';
 import { Element } from './element/Element';
+import { ApiService } from '../core/services';
 
 @Component({
   selector: 'alx-collection-display',
@@ -12,14 +12,14 @@ export class CollectionDisplayComponent implements OnInit {
   elements: Element[];
   noPicture: true;
 
-  constructor(private collectionService: CollectionService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.getCollection();
   }
 
   private getCollection() {
-    this.collectionService
+    this.apiService
       .getElements('/public/medias')
       .subscribe((elem) => (this.elements = elem));
   }
